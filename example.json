@@ -1,0 +1,239 @@
+{
+  "type": "node--levy_collection_item",
+  "id": "ccaac2b5-dbcf-4c8b-930c-850c36d69b9a",
+  "links": {
+    "self": {
+      "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a?resourceVersion=id%3A54246"
+    }
+  },
+  "attributes": {
+    "drupal_internal__nid": 54210,
+    "drupal_internal__vid": 54246,
+    "langcode": "en",
+    "revision_timestamp": 1502408093,
+    "revision_log": null,
+    "status": true,
+    "title": "001.022 - Hail Columbia. A Favorite Patriotic Song.",
+    "created": 1502408704,
+    "changed": 1505405367,
+    "promote": false,
+    "sticky": false,
+    "default_langcode": true,
+    "revision_translation_affected": true,
+    "path": {
+      "alias": "/collection/001/022",
+      "pid": 50745,
+      "langcode": "en"
+    },
+    "body": null,
+    "field_advertisement": null,
+    "field_artist": null,
+    "field_audio_notes": null,
+    "field_box": "001",
+    "field_dedicatee": null,
+    "field_duplication": null,
+    "field_first_line": "Hail! Columbia happy land",
+    "field_first_line_of_chorus": "Firm united let us be",
+    "field_force_public_domain": true,
+    "field_form_of_composition": "strophic with chorus",
+    "field_full_title": "Hail Columbia. A Favorite Patriotic Song.",
+    "field_has_audio": false,
+    "field_instrumentation": "voice and piano",
+    "field_item_author": "none provided",
+    "field_item_id": "022",
+    "field_linkup_status": null,
+    "field_loc_id": null,
+    "field_note": null,
+    "field_performer": null,
+    "field_plate_number": null,
+    "field_player_id": null,
+    "field_publish_date_text": "[n.d.]",
+    "field_publish_date_year": null,
+    "field_publish_location": "New York",
+    "field_short_te": null
+  },
+  "relationships": {
+    "node_type": {
+      "data": {
+        "type": "node_type--node_type",
+        "id": "6e078db8-0496-441e-b636-e85d6855ec6a"
+      },
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/node_type?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/node_type?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "revision_uid": {
+      "data": {
+        "type": "user--user",
+        "id": "ceed76c6-2f20-4da0-91c7-e255f4e87994"
+      },
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/revision_uid?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/revision_uid?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "uid": {
+      "data": {
+        "type": "user--user",
+        "id": "ceed76c6-2f20-4da0-91c7-e255f4e87994"
+      },
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/uid?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/uid?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_composition_metadata": {
+      "data": [
+        {
+          "type": "taxonomy_term--composition_metadata",
+          "id": "b4a5e591-1a1a-4ca6-b118-eb4c7335f589"
+        },
+        {
+          "type": "taxonomy_term--composition_metadata",
+          "id": "6889744e-51fd-4745-85d3-301b0f982fc8"
+        }
+      ],
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_composition_metadata?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_composition_metadata?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_duplicates": {
+      "data": [],
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_duplicates?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_duplicates?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_images": {
+      "data": [
+        {
+          "type": "paragraph--collection_item_image",
+          "id": "c1c69dd9-e6af-4902-a742-70d80ff15c4f",
+          "meta": {
+            "target_revision_id": 28112
+          }
+        },
+        {
+          "type": "paragraph--collection_item_image",
+          "id": "5fed8017-4d12-40ff-a20a-857f9636fa4b",
+          "meta": {
+            "target_revision_id": 28113
+          }
+        }
+      ],
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_images?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_images?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_instrumentation_metadata": {
+      "data": [
+        {
+          "type": "taxonomy_term--instrumentation_metadata",
+          "id": "8e2e9195-b52b-448b-ba9f-06dc7eba9de7"
+        },
+        {
+          "type": "taxonomy_term--instrumentation_metadata",
+          "id": "2404b88b-07b7-47e5-aa56-844a51ee2fdb"
+        }
+      ],
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_instrumentation_metadata?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_instrumentation_metadata?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_pdf": {
+      "data": {
+        "type": "file--file",
+        "id": "4604f5aa-2584-49d9-b9f2-475fd4f96397",
+        "meta": {
+          "display": null,
+          "description": null
+        }
+      },
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_pdf?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_pdf?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_people": {
+      "data": [],
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_people?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_people?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_publisher": {
+      "data": {
+        "type": "taxonomy_term--publishers",
+        "id": "bc30830e-a4c2-4f40-ba16-222793ca8250"
+      },
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_publisher?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_publisher?resourceVersion=id%3A54246"
+        }
+      }
+    },
+    "field_subjects": {
+      "data": [
+        {
+          "type": "taxonomy_term--subjects",
+          "id": "eefd2653-7c64-4258-8bc6-ee1050271ad2"
+        },
+        {
+          "type": "taxonomy_term--subjects",
+          "id": "30f468de-9900-4efc-b174-9ac5ce356188"
+        }
+      ],
+      "links": {
+        "related": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/field_subjects?resourceVersion=id%3A54246"
+        },
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/ccaac2b5-dbcf-4c8b-930c-850c36d69b9a/relationships/field_subjects?resourceVersion=id%3A54246"
+        }
+      }
+    }
+  }
+}
