@@ -1,23 +1,24 @@
 # levy-api
 
 test: https://levy-test.mse.jhu.edu
+
 prod: https://levysheetmusic.mse.jhu.edu/
 
 
 Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/api-overview
 
-Entities in Levy Sheet Music:
+## Entities in Levy Sheet Music:
 
-Nodes
+### Nodes
 - levy_collection_item
 - levy_collection_names
 
-Paragraphs
+### Paragraphs
  - collection_duplicate_reference
  - collection_item_image
  - collection_name
 
-Taxonomies
+### Taxonomies
  - c
  - composition_metadata
  - creator_r
@@ -25,7 +26,7 @@ Taxonomies
  - publishers
  - subjects
 
-To upload new items:
+## To upload new items:
 1. Post new taxonomy terms, record ids
 2. Post new levy_collection_names, record ids
 3. Post new collection_name paragraphs, record ids
