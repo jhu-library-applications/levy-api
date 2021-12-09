@@ -1,0 +1,532 @@
+{
+  "jsonapi": {
+    "version": "1.0",
+    "meta": {
+      "links": {
+        "self": {
+          "href": "http://jsonapi.org/format/1.0/"
+        }
+      }
+    }
+  },
+  "data": {
+    "type": "node--levy_collection_item",
+    "id": "c7603300-5517-4171-a0ad-328e27d68547",
+    "links": {
+      "self": {
+        "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547?resourceVersion=id%3A54474"
+      }
+    },
+    "attributes": {
+      "drupal_internal__nid": 54438,
+      "drupal_internal__vid": 54474,
+      "langcode": "en",
+      "revision_timestamp": 1502409102,
+      "revision_log": null,
+      "status": true,
+      "title": "003.050 - General Spicers Grand March and Quick Step.",
+      "created": 1502428630,
+      "changed": 1505405367,
+      "promote": false,
+      "sticky": false,
+      "default_langcode": true,
+      "revision_translation_affected": true,
+      "path": {
+        "alias": "/collection/003/050",
+        "pid": 50979,
+        "langcode": "en"
+      },
+      "body": null,
+      "field_advertisement": null,
+      "field_artist": "L.B.; Lithry. of Pendleton Wall St.",
+      "field_audio_notes": null,
+      "field_box": "003",
+      "field_dedicatee": "dedicated to the Officers of the Artillery, of the City of New York",
+      "field_duplication": null,
+      "field_first_line": null,
+      "field_first_line_of_chorus": null,
+      "field_force_public_domain": true,
+      "field_form_of_composition": "binary; binary with coda",
+      "field_full_title": "General Spicers Grand March and Quick Step.",
+      "field_has_audio": false,
+      "field_instrumentation": "piano",
+      "field_item_author": "Composed by J. E. Roca. Leader of the Jackson Guards Band.",
+      "field_item_id": "050",
+      "field_linkup_status": null,
+      "field_loc_id": null,
+      "field_note": null,
+      "field_performer": null,
+      "field_plate_number": null,
+      "field_player_id": null,
+      "field_publish_date_text": "[n.d.]",
+      "field_publish_date_year": null,
+      "field_publish_location": "New York",
+      "field_short_te": null
+    },
+    "relationships": {
+      "node_type": {
+        "data": {
+          "type": "node_type--node_type",
+          "id": "6e078db8-0496-441e-b636-e85d6855ec6a"
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/node_type?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/node_type?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "revision_uid": {
+        "data": {
+          "type": "user--user",
+          "id": "ceed76c6-2f20-4da0-91c7-e255f4e87994"
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/revision_uid?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/revision_uid?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "uid": {
+        "data": {
+          "type": "user--user",
+          "id": "ceed76c6-2f20-4da0-91c7-e255f4e87994"
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/uid?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/uid?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_composition_metadata": {
+        "data": [
+          {
+            "type": "taxonomy_term--composition_metadata",
+            "id": "9ce2e97d-0289-4577-8c43-c83a8dd190a2"
+          },
+          {
+            "type": "taxonomy_term--composition_metadata",
+            "id": "40285c15-af40-4c0f-9c80-5f9cbab8635b"
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_composition_metadata?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_composition_metadata?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_duplicates": {
+        "data": [],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_duplicates?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_duplicates?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_images": {
+        "data": [
+          {
+            "type": "paragraph--collection_item_image",
+            "id": "f248ce46-76ca-4eba-9e20-a2c3d1ec7434",
+            "meta": {
+              "target_revision_id": 29002
+            }
+          },
+          {
+            "type": "paragraph--collection_item_image",
+            "id": "e82c5dd4-14f1-4e40-acc7-e2bf0e79f74c",
+            "meta": {
+              "target_revision_id": 29003
+            }
+          },
+          {
+            "type": "paragraph--collection_item_image",
+            "id": "d9e7be67-56f2-4b20-a545-b559f5554472",
+            "meta": {
+              "target_revision_id": 29004
+            }
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_images?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_images?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_instrumentation_metadata": {
+        "data": [
+          {
+            "type": "taxonomy_term--instrumentation_metadata",
+            "id": "2404b88b-07b7-47e5-aa56-844a51ee2fdb"
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_instrumentation_metadata?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_instrumentation_metadata?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_pdf": {
+        "data": {
+          "type": "file--file",
+          "id": "066e7e4e-4dcb-449d-b969-79a00d21de9b",
+          "meta": {
+            "display": null,
+            "description": null
+          }
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_pdf?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_pdf?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_people": {
+        "data": [
+          {
+            "type": "paragraph--collection_name",
+            "id": "f572e9dd-a506-4242-8947-e14fa73204d7",
+            "meta": {
+              "target_revision_id": 29001
+            }
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_people?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_people?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_publisher": {
+        "data": {
+          "type": "taxonomy_term--publishers",
+          "id": "f6608add-778b-4cb3-9fb0-2381e12edbed"
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_publisher?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_publisher?resourceVersion=id%3A54474"
+          }
+        }
+      },
+      "field_subjects": {
+        "data": [
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "b74d9b1a-6b6b-4647-a7e4-83d5127875a5"
+          },
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "4e6fc231-db98-4cc3-b4fe-c721c0aa2cff"
+          },
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "30f468de-9900-4efc-b174-9ac5ce356188"
+          },
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "666266b8-7574-4544-818a-fe8059ba9c24"
+          },
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "feceed0f-7144-401d-8d3a-da0852603081"
+          },
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "a68201ab-f1fb-49a2-a052-2b7a59a639dc"
+          },
+          {
+            "type": "taxonomy_term--subjects",
+            "id": "82a1ad5e-9841-4e81-9f49-dda7d3de8c5c"
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/field_subjects?resourceVersion=id%3A54474"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547/relationships/field_subjects?resourceVersion=id%3A54474"
+          }
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "paragraph--collection_name",
+      "id": "f572e9dd-a506-4242-8947-e14fa73204d7",
+      "links": {
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7"
+        }
+      },
+      "attributes": {
+        "drupal_internal__id": 29001,
+        "drupal_internal__revision_id": 29001,
+        "langcode": "en",
+        "status": true,
+        "created": 1502409102,
+        "parent_id": "54438",
+        "parent_type": "node",
+        "parent_field_name": "field_people",
+        "behavior_settings": [],
+        "default_langcode": true,
+        "revision_translation_affected": true
+      },
+      "relationships": {
+        "paragraph_type": {
+          "data": {
+            "type": "paragraphs_type--paragraphs_type",
+            "id": "36170ce3-1d71-462d-95d0-01167a11e679"
+          },
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7/paragraph_type"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7/relationships/paragraph_type"
+            }
+          }
+        },
+        "field_name": {
+          "data": {
+            "type": "node--levy_collection_names",
+            "id": "df6ddbc4-8a14-47fa-a78b-025b11b9c8be"
+          },
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7/field_name"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7/relationships/field_name"
+            }
+          }
+        },
+        "field_roles": {
+          "data": [
+            {
+              "type": "taxonomy_term--creator_r",
+              "id": "cc45eb91-6907-4f89-9c7b-0d06c5f05620"
+            }
+          ],
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7/field_roles"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/f572e9dd-a506-4242-8947-e14fa73204d7/relationships/field_roles"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "node--levy_collection_names",
+      "id": "df6ddbc4-8a14-47fa-a78b-025b11b9c8be",
+      "links": {
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be?resourceVersion=id%3A16098"
+        }
+      },
+      "attributes": {
+        "drupal_internal__nid": 16093,
+        "drupal_internal__vid": 16098,
+        "langcode": "en",
+        "revision_timestamp": 1497222637,
+        "revision_log": null,
+        "status": true,
+        "title": "J. E. Roca",
+        "created": 1497222637,
+        "changed": 1497222637,
+        "promote": false,
+        "sticky": false,
+        "default_langcode": true,
+        "revision_translation_affected": true,
+        "path": {
+          "alias": "/people/j-e-roca",
+          "pid": 8603,
+          "langcode": "en"
+        },
+        "body": null
+      },
+      "relationships": {
+        "node_type": {
+          "data": {
+            "type": "node_type--node_type",
+            "id": "e8d46042-414a-45d1-94f4-a62a1b818e56"
+          },
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be/node_type?resourceVersion=id%3A16098"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be/relationships/node_type?resourceVersion=id%3A16098"
+            }
+          }
+        },
+        "revision_uid": {
+          "data": {
+            "type": "user--user",
+            "id": "ceed76c6-2f20-4da0-91c7-e255f4e87994"
+          },
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be/revision_uid?resourceVersion=id%3A16098"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be/relationships/revision_uid?resourceVersion=id%3A16098"
+            }
+          }
+        },
+        "uid": {
+          "data": {
+            "type": "user--user",
+            "id": "ceed76c6-2f20-4da0-91c7-e255f4e87994"
+          },
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be/uid?resourceVersion=id%3A16098"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_names/df6ddbc4-8a14-47fa-a78b-025b11b9c8be/relationships/uid?resourceVersion=id%3A16098"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "taxonomy_term--creator_r",
+      "id": "cc45eb91-6907-4f89-9c7b-0d06c5f05620",
+      "links": {
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620"
+        }
+      },
+      "attributes": {
+        "drupal_internal__tid": 7,
+        "drupal_internal__revision_id": 7,
+        "langcode": "en",
+        "revision_created": null,
+        "revision_log_message": null,
+        "status": true,
+        "name": "composer",
+        "description": null,
+        "weight": 0,
+        "changed": 1496775465,
+        "default_langcode": true,
+        "revision_translation_affected": true,
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "vid": {
+          "data": {
+            "type": "taxonomy_vocabulary--taxonomy_vocabulary",
+            "id": "8784bd46-43fe-4ae1-824b-6960fff67590"
+          },
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620/vid"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620/relationships/vid"
+            }
+          }
+        },
+        "revision_user": {
+          "data": null,
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620/revision_user"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620/relationships/revision_user"
+            }
+          }
+        },
+        "parent": {
+          "data": [
+            {
+              "type": "taxonomy_term--creator_r",
+              "id": "virtual",
+              "meta": {
+                "links": {
+                  "help": {
+                    "href": "https://www.drupal.org/docs/8/modules/json-api/core-concepts#virtual",
+                    "meta": {
+                      "about": "Usage and meaning of the 'virtual' resource identifier."
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "links": {
+            "related": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620/parent"
+            },
+            "self": {
+              "href": "https://levy-test.mse.jhu.edu/jsonapi/taxonomy_term/creator_r/cc45eb91-6907-4f89-9c7b-0d06c5f05620/relationships/parent"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "paragraphs_type--paragraphs_type",
+      "id": "36170ce3-1d71-462d-95d0-01167a11e679",
+      "links": {
+        "self": {
+          "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraphs_type/paragraphs_type/36170ce3-1d71-462d-95d0-01167a11e679"
+        }
+      },
+      "attributes": {
+        "langcode": "en",
+        "status": true,
+        "dependencies": [],
+        "drupal_internal__id": "collection_name",
+        "label": "Collection Name",
+        "icon_uuid": null,
+        "icon_default": null,
+        "description": null,
+        "behavior_plugins": []
+      }
+    }
+  ],
+  "links": {
+    "self": {
+      "href": "https://levy-test.mse.jhu.edu/jsonapi/node/levy_collection_item/c7603300-5517-4171-a0ad-328e27d68547?include=field_people.field_name%2Cfield_people.field_roles%2Cfield_people.paragraph_type"
+    }
+  }
+}

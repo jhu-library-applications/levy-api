@@ -19,12 +19,15 @@ status = s.get(baseURL+'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
-                  'application/vnd.api+json', 'X-CSRF-Token': token})
+                  'application/octet-stream', 'Content-Disposition': 'file',
+                  'X-CSRF-Token': token})
 
-metadata = json.load(open('/Users/michelle/Documents/GitHub/levy-api/test.json'))
-metadata = json.dumps(metadata)
-post = s.post(baseURL+type, data=metadata, cookies=s.cookies).json()
-data = post.get('data')
-id = data.get('id')
-link = data['links']['self']['href']
-print(id, link)
+id = 'bbc8e1d0-9dbc-4f2a-a363-e52b32b2b243'
+filename = 'jhu_coll-0002_09280.jpg'
+cd_value = 'file; filename="{}"'.format(filename)
+data = open('jhu_coll-0002_09280.jpg', 'rb')
+s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
+                  'application/octet-stream', 'Content-Disposition': cd_value,
+                  'X-CSRF-Token': token})
+post = s.post(baseURL+'jsonapi/node/article/field_image', data=data, cookies=s.cookies)
+print(post)

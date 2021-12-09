@@ -1,6 +1,11 @@
 import requests
 import pandas as pd
 from datetime import datetime
+import os
+
+directory = '/Users/michelle/Documents/GitHub/levy-api/taxonomies/'
+if not os.path.exists(directory):
+    os.mkdir(directory)
 
 # Your baseURL: https://example.com+//jsonapi/taxonomy_term/
 baseURL = 'https://levy-test.mse.jhu.edu//jsonapi/taxonomy_term/'
@@ -53,14 +58,16 @@ print(existingTax.head)
 # Create CSV for DataFrame containing all taxonomy terms.
 dt = datetime.now().strftime('%Y-%m-%d%H.%M.%S')
 filename = 'allExistingTaxonomies_'+dt+'.csv'
-existingTax.to_csv(filename, index=False)
+fullname = os.path.join(directory, filename)
+existingTax.to_csv(fullname, index=False)
 
 # Creates CSV for each different taxonomy (subject, person, etc).
-df = pd.read_csv(filename)
+df = pd.read_csv(fullname)
 unique = df['taxonomy'].unique()
 print(unique)
 for value in unique:
     newDF = df.loc[df['taxonomy'] == value]
     newDF = newDF.dropna(axis=1, how='all')  # Deletes blank columns.
-    newFile = value+'_'+dt+'.csv'
-    newDF.to_csv(newFile, index=False)
+    newFile = value+'.csv'
+    fullname = os.path.join(directory, newFile)
+    newDF.to_csv(fullname, index=False)

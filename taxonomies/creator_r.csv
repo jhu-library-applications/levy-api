@@ -1,0 +1,343 @@
+taxonomy,name,id
+creator_r,arranger,095cbd30-39aa-4b18-8620-4ba0e76d10f3
+creator_r,composer,cc45eb91-6907-4f89-9c7b-0d06c5f05620
+creator_r,lyricist,42f1747c-91ea-4689-90df-2a7db381be4d
+creator_r,composer lyricist,9801b18f-b2a3-4cbd-ae21-42341069c1fa
+creator_r,composer arranger,f22e0a72-8389-463e-9b79-4f373844388b
+creator_r,composer lyricist arranger,857eb61d-48d7-4cfb-a852-742d39831906
+creator_r,lyricist arranger,1f2887c1-8b75-454a-b453-512ef56cb28c
+creator_r,arranger lyricist,d0b9ed14-bb55-4eff-b057-ea9c05d389d6
+creator_r,lyricist other,6ed17139-9da7-44ba-b762-7f853000b9e1
+creator_r,composer lyricist other,ccad4b27-8fa5-45b6-877a-13aeb61e0c26
+creator_r,other,743e1611-15a6-47f8-a5c9-2d66423afff0
+creator_r,composer other,ca55da85-1e3b-4c0a-aadb-1de2eee5f085
+creator_r,composer lyricist arranger other,10b2b726-e345-4254-8f10-55ef063552e5
+creator_r,arranger other,297d621d-d8ed-48e0-a3ba-d24943e67ad3
+creator_r,composer arranger other,8a351bd4-fa48-4ee3-84e4-2f95ba501af1
+creator_r,A. Seymour Brown,17210fe6-4456-45dc-acd1-9f4775107099
+creator_r,A. Seymour Brown,ba9ffe2e-6cfd-4c17-bb4a-8e57895c5789
+creator_r,A. Willemetz,215b8096-2128-409e-9383-3109a468c60e
+creator_r,A.G. Delamater,ba593f39-5dd8-4298-938f-cd9ea1ac4e2a
+creator_r,Adrian Ross,c5680332-05b7-4129-8e11-6a8eb0c935a4
+creator_r,Albert Stillman,80dc4abf-b93a-46f1-a03d-2174c87b861d
+creator_r,Alf. J. Lawrence,24c4308b-9b37-4380-bd90-e798aa4ce7ea
+creator_r,Alfred Bryan,dcdba945-fa0f-4110-b87e-85fe31f193cc
+creator_r,Alice Duer Miller,6eb3d2fb-2e03-4a29-960d-3eeff25f818b
+creator_r,Andrew B. Sterling,2ecb20fd-e8db-413f-9ec1-86f5b5b6713d
+creator_r,Anne Caldwell,881a3d6e-2f89-4b3d-b3f9-e02544ced957
+creator_r,Arthur Fields,f3230a48-596f-46a1-af41-1e063d7a9224
+creator_r,Arthur Freed,87ea9eac-fc38-48f2-b683-0e4c83313323
+creator_r,Arthur Hammerstein,5fe95bdd-4865-4e93-995f-e05d2b753f4b
+creator_r,Arthur Jackson,7aa4284d-e9ce-4509-9360-58c97c8a7d94
+creator_r,Arthur Pinero,950d8880-2885-4a11-9d40-6d779dfa3fd3
+creator_r,B.G. De Sylva,72cadec8-ecd8-48a5-9a4b-062eba7d4c1e
+creator_r,Ballard Macdonald,e88dd2c3-47d1-40f3-9b5a-ae310245155d
+creator_r,Bernard Dougall,3d895ac4-f729-4d51-928a-d0fea85c0433
+creator_r,Bert Kalmar,0a3e2a2e-db5b-4414-b2b1-2cc6d1243496
+creator_r,Berton Braley,55a18d9a-074a-4fa7-9a99-9046a37f4bf2
+creator_r,Bessie Mccoy,4fe6b26c-39fd-474a-a7e0-71dc847ab888
+creator_r,Billy Rose,e8ed3f60-d300-496b-92cb-f4cb102aa389
+creator_r,Booth Tarkington,ca310083-38c8-431e-bb72-1339356095c5
+creator_r,Brian Hooker,88800ae8-29d6-4034-a477-cb160848e6f5
+creator_r,C.H. Bovill,5317db1b-ba90-486f-9060-c2ea49c7868b
+creator_r,Charles H. Taylor,2b239914-df52-40a8-9ff9-40f5214c9528
+creator_r,Clarke & Leslie,50f64207-0ce9-4eeb-952e-3b0a97e7066e
+creator_r,Clifford Grey,3ccb9e17-3981-4cac-b0db-d7a9e6573d92
+creator_r,Cole Porter,f1d7b2a0-1ef8-4106-b4cb-7c849ccd431e
+creator_r,D. Eardley-Wilmot,675b7514-3412-405a-a8d1-dbfdafc4e921
+creator_r,Dabney & Europe,dc8fb293-f91b-455b-b261-2777dd8fa6ae
+creator_r,Desmond Carter,75e9a4b1-e839-472f-bd10-577cf8f3db18
+creator_r,Dorothy Donnelly,ade5d711-827c-4c4b-9488-17a8f8983e9c
+creator_r,Dorothy Fields,50a9069f-3d7c-4c9f-be63-671b3a14c0ac
+creator_r,Dorothy Terriss,3a0af825-7b2e-4c9e-8868-2f7dee036dc2
+creator_r,Du Bose Heyward,bc7f07da-e8fe-4df1-afc2-5cf95d99f36d
+creator_r,Dubose Heyward,c073213f-4ef3-463a-b845-ef72371cfcaf
+creator_r,Dudley Wilkinson,dba3239f-a2f3-4932-8800-9aa824a65644
+creator_r,E. Ray Goetz,16a36178-6c12-43a5-9011-445d4193d589
+creator_r,E.Y. Harburg,43684581-4545-496f-ac2d-01c4af86ceb7
+creator_r,Earl Haubrich,ffa216fb-b60b-46c5-9e90-8d16d70dc9c6
+creator_r,Earle C. Jones,730cf15f-48d9-4af1-93db-2f4c8ff229d9
+creator_r,Edgar Allan Woolf,a28d30ff-c14b-4392-a37b-47737d92c1c9
+creator_r,Edgar Leslie,ae5a21f0-2e60-4bb4-8213-3afc99410b7c
+creator_r,Edward Laska,a84e554d-ee5a-4fdc-b926-f2f13f16374b
+creator_r,Edward Madden,70bc5b57-1ebd-48c2-ba54-0114ab4a1490
+creator_r,Egbert Van Alstyne,f1993cab-f93a-4157-b1c9-593a476b0545
+creator_r,Elsie Janis,0f7c0514-d5d3-4312-a2a3-ea8a8ea88db9
+creator_r,Eugene West,0344fc63-4225-465c-88be-3c68f57576bf
+creator_r,F. Clifford Harris,6645fb7f-d41f-474b-ac6c-b9d82dc46871
+creator_r,Frank Craven,53b082ab-a404-4d3f-b9e6-8db9dd022638
+creator_r,Frank Loesser,8c8d1f7c-ce3e-446b-ad8b-21c97dca5b7b
+creator_r,Franklin P. Adams,5a3a199d-370c-41a1-81a9-4e52afc10b64
+creator_r,Fred E. Ahlert,d968fab2-1aed-47fb-ad01-8e28f39a7c75
+creator_r,Fred Ebb,0fa8341a-69a5-4a3b-be68-c73ef264fa34
+creator_r,Fred Ziemer,227e8022-9545-4b20-a23a-af069c5d1d45
+creator_r,Frederick Day,e2818c2a-7fde-44bd-94cd-74cf04d98b07
+creator_r,Gene Buck,c4d97d5e-4f49-444e-9e24-654ec437cf5f
+creator_r,Gene De Paul,dc1dd78c-4869-4076-b37a-4a4cf6b37c47
+creator_r,Geo. Graff Jr.,f83b68e1-bf56-4bc7-bdda-dfd6ee6a9f85
+creator_r,Geo. Grossmith Jr.,df4f77cc-500b-4a38-8fe4-e241942f5cff
+creator_r,George Arthurs,9bbb8e83-ab2f-441a-aace-92e2aa8852af
+creator_r,George Grossmith,61025367-76fa-4ebd-abb7-6297bb907bee
+creator_r,George M. Cohan,98562d69-4676-498f-ad46-1440d748b1fe
+creator_r,George V. Hobart,dc07141d-7792-4f10-ad62-3433bfa46289
+creator_r,George Whiting,6430285e-e7c1-432b-808d-00d4f5c629b3
+creator_r,Graham John,b66b300c-5d00-4e13-9d98-34359abd012c
+creator_r,Grant Clarke,6cf6ee46-8b31-4155-b711-289e5cfaf91a
+creator_r,Gus Edwards,7c28981c-4c8b-4676-8b22-301665770caa
+creator_r,Gus Kahn,4c26504e-69a5-45f8-8d32-c07c15ea62e2
+creator_r,Guy Bolton,2f4591cb-6919-4dc1-8f76-b4f5c6015919
+creator_r,Harold Atteridge,541fc568-47f1-404a-ada9-5cfd63d6361b
+creator_r,Harold Robe,10c916c6-cf8a-4340-9201-d851536d4363
+creator_r,Harry Akst,41dee65a-4faf-425e-a2af-ea0999a5d3db
+creator_r,Harry B. Smith,4d099990-53ae-4fc1-b0a0-eb04e305a2d8
+creator_r,Harry Clarke,8d7b35cc-0431-45b4-b36d-9fd23d7fda3f
+creator_r,Harry Graham,23f93d43-3eff-47d7-97e0-571883f71380
+creator_r,Harry Marlow,ea1c3d27-c8ca-4397-a93b-e3d305292b43
+creator_r,Harry Owens,ab0dde62-507c-4b68-a3ff-611135358c48
+creator_r,Harry Revel,70d9d925-626f-4e3a-b74d-c742bfeb1666
+creator_r,Harry Ruby,f44a5207-4153-421d-89b1-a87dfc6bee41
+creator_r,Henrich Berte,88240700-37dc-4e5e-81d8-993eeeadcc84
+creator_r,Henry Blossom,93acd3ab-7960-4f2b-84e2-1dbf7de73b1b
+creator_r,Henry Fink,bd046611-1692-409f-9249-b6fb901f8ce3
+creator_r,Herb Magidson,813e4b06-c0f8-42d1-8ae1-ab0e42de0054
+creator_r,Herbert Reynolds,1ce7ea4e-a914-401d-a2b8-4d4a20012ee4
+creator_r,Herbert Stothart,ad5e3302-22cb-4c9a-93a7-19494dbf65a8
+creator_r,Howard Dietz,06573eed-a3db-4139-a418-df4631cc873d
+creator_r,Ira Gershwin,9c808a20-1903-40fe-8e4a-d3bfdea5d3d8
+creator_r,Irving Berlin,d82712b8-8b00-43d9-8a66-89d98c7e3db4
+creator_r,Irving Caesar,83750cb7-2edf-4654-acb1-3a931e06925d
+creator_r,Irving Kahal,159690e2-71d9-4674-a7b5-4b34d763d5f1
+creator_r,J. Keirn Brennan,a3fe0cdd-cf90-41b1-83a7-3852fb1ad464
+creator_r,J. Will Callahan,f723776d-9cc4-457e-a469-6a169824cb37
+creator_r,J.W. Johnson,1d5c1e25-ab76-41c8-8635-39ca41e79b69
+creator_r,Jack Brooks,856d7efd-cfdb-493b-bc5b-6b58cc7d759a
+creator_r,Jack Hoins,746bc1db-9256-4989-b88a-09266e7809e5
+creator_r,Jack Norworth,ae5ac687-a1dc-4435-84f6-d074bdbc97a0
+creator_r,James Duffy,15d7dbfa-2eb4-4ae9-b9b2-42692bffe3dd
+creator_r,James Heard,e05f555a-84b1-41b4-a88e-5557eabd9944
+creator_r,James O'Dea,e4c776d4-2b50-4776-a93b-332e589e51e5
+creator_r,Jerome Kern,35e920df-b793-4bca-b888-1e55a346074a
+creator_r,Jimmy Kennedy,4dac837c-7ad9-465d-8156-0cfe64ecb92b
+creator_r,Jimmy Mchugh,4e23f41f-408f-428c-8011-0d125eccc7d3
+creator_r,Joe Goodwin,4c8a9b08-79a5-4a7b-b6d6-ad78f860492d
+creator_r,Joe Mccarthy,3544dfbd-fad1-4d38-bd20-7390fc7e7958
+creator_r,John E. Hazzard,aefd9c3b-75a5-4996-af7e-b6f32ad14180
+creator_r,John Golden,1d11fe5c-c5af-4df3-8bec-bc925da833b6
+creator_r,John H. Wagner,260eab63-7412-4473-ab71-8d0a8d77928d
+creator_r,John Henry Mears,98730a94-4704-4035-ab03-42a35f37c76a
+creator_r,John L. Golden,1eb7742e-abd8-4347-b962-4158e1054882
+creator_r,Johnny Mercer,8099a8e2-3dc7-44dd-a513-c2a35e635ccc
+creator_r,Joseph Mccarthy,2a851b98-6f0d-4c61-af78-ffe94f546aec
+creator_r,June Carroll,8d2321cc-b6b7-498a-afc6-30ef17d7e461
+creator_r,Junie Mccree,6cd82aed-1179-4676-9c81-7a68f4b28542
+creator_r,Kim Gannon,a84a33cf-617a-4964-aa75-e2422ac4016d
+creator_r,L Wolfe Gilbert,27739e29-6945-4fa9-8eed-3170677b12bc
+creator_r,L.W. Heiser,b87def2b-2d80-4163-99d7-3d2c948ae598
+creator_r,Leo Robin,5f777d8d-ea7e-43d5-991b-89564a69b487
+creator_r,Lew Brown,2aba14a4-32a0-4fcf-aca6-9b84883ec598
+creator_r,Lew Porter,11f909a6-81c3-48e4-9b61-807a0841a604
+creator_r,Lorenz Hart,4fb90828-fbec-40c6-ac93-de78c3d32439
+creator_r,Lou Paley,7a3a68d3-f93d-47f7-a644-b65569378a8c
+creator_r,Louis Henneve,50af8ad5-e6dd-4612-93a9-5cfb9b6c6aef
+creator_r,M.E. Rourke,421ccac3-8576-4d08-9e3e-90a671745c58
+creator_r,Mack Gordon,a9626a73-2468-424d-89d7-701058fe0f20
+creator_r,Marshall M. Bartholomew,7a737097-1e3a-45cc-b778-f810499bf247
+creator_r,Martin Charnin,ff141a16-78b3-4bb2-a331-fcb3fb9a7b12
+creator_r,Matthew Woodward,5c4e4937-99a9-4bc0-8418-fc7a58978f5c
+creator_r,Maurice Stonehill,1781cd0e-9447-4b16-b6b2-5900322e51a2
+creator_r,Melville Gideon,aed988ec-0127-468d-b9cf-5d10bb299bc6
+creator_r,Oscar Hammerstein Ii,4f83edbc-db4b-45d8-8651-152444299c64
+creator_r,Otto Harbach,ecff63fd-f63a-4987-92bb-6c5e0ca9eb13
+creator_r,Otto Motzan,41cd845c-0a30-4e9f-9690-2dbebe09ae51
+creator_r,Owen Hall,766efee4-c13c-4d6f-bd11-2dc8cc220e48
+creator_r,P.G. Wodehouse,be9f29e1-be45-4d58-a2f6-1858753b2139
+creator_r,Paul West,b1484501-e1ae-4bcf-8407-8c73baf3d133
+creator_r,Percival Knight,9d16759e-64a8-4b0e-8f6a-02a0ce7c1e4e
+creator_r,Ray Henderson,3b09f542-ba0b-4ef9-9e51-872351e18cae
+creator_r,Ren. G. May,d0c88eb0-13c1-4bf2-b984-ee60827b244b
+creator_r,Reynold Wolf,283e726a-209f-45f0-ad61-d31dc6b7de92
+creator_r,Richard A. Whiting,edfab626-c600-4ca9-a37f-2570f2a84118
+creator_r,Richard Rodgers,c4cb7946-0173-4c66-99b2-fbb858bf2b4c
+creator_r,Ring Lardner,dab255a7-b08d-468f-861e-a1601d695257
+creator_r,Ritchie Cordell,ac9e12ba-58e1-446a-9dc2-ca2cc4fd681e
+creator_r,Robert B. Smith,1800c077-4fd4-412e-8474-aa648fa500e3
+creator_r,Sam Ehrlich,fc15cfab-aa6e-4186-88f5-284cb46e8875
+creator_r,Sam M. Lewis,6e491609-ca94-4cd7-8026-bbcaddce3e03
+creator_r,Schuyler Greene,cc410723-4d3f-46a9-8b94-fca2f918433a
+creator_r,Seymour Brown,c8fd97d8-b373-454d-b5c3-3ca958fe2bb2
+creator_r,Stanislaus Stange,502fd46a-0693-43a7-8370-2011509bd069
+creator_r,Stanley Murphy,ac762fea-fa08-4f21-adf2-07228899998d
+creator_r,Stephen Sondheim,2d07cc0c-625d-455f-9524-d540de2f999c
+creator_r,T. Lawrason Riggs,dee9ae38-6108-4592-9647-2a559837010d
+creator_r,Ted Snyder,bccf4a09-8831-492f-8fd9-e6ce07bec55f
+creator_r,Thomas Fundora,7ce72c4e-629c-426a-964a-0137608ecd9a
+creator_r,Vaughn De Leath,6483530f-47fd-42e6-bfb8-a2a7c0817f73
+creator_r,Wallace Irwin,8457a272-a966-4724-97d4-dddb647296b9
+creator_r,Will Dillon,9aa79946-43da-49a4-98fe-37ad2870a1e0
+creator_r,William Jerome,b35cdc59-8314-4248-b1e8-2d4f0f89d449
+creator_r,Wm Jerome,76e8aa62-124b-40b2-8ec0-86974e668cba
+creator_r,Worton David,b2127ddd-d7af-4a3f-a93c-d0e439d631d8
+creator_r,A.C. Manning,639f30ae-2f97-48e1-a844-c2f6a094bfa0
+creator_r,Calvin Grooms,6bc26484-ccff-402b-977f-b6d5b6da2a8b
+creator_r,Charles N. Grant,a4bc09b9-2aa6-427f-8231-eb0bb2fe6d93
+creator_r,Chas Miller,751c3a0a-42cb-4777-a8ad-f0def98174eb
+creator_r,Chas. N. Grant,acac4ac0-f361-4318-b2d1-d3c76080f9cf
+creator_r,Denis Wright,114e4547-a626-4541-828a-e4b8d4e0965e
+creator_r,Guy Jones,974d34ae-7909-49b7-a47f-ae2857c7dd35
+creator_r,H.M. Higgs,a5323ff3-769f-4f8d-8100-78d1a2eb274f
+creator_r,Henry Hall,26101f0b-752a-41f0-8e96-b17717e2e35c
+creator_r,Mornay D. Helm,b6c8eca6-2a23-40fc-8583-3653d85f3dac
+creator_r,Philip J. Lang,2c05df52-a027-42cc-81e7-8aa53f7c71d8
+creator_r,Solito De Solis,eb398716-7a0a-46a1-b1e9-804b4b8f0df8
+creator_r,William Bolcom,49a31ded-ab64-4b1d-b1fd-5b56c525b2ca
+creator_r,Al Harriman,f5bbf135-ec9c-460d-ae28-bcbca9860afe
+creator_r,Andrew B. Sterling,7caf497c-feed-4c4f-ad96-7602a8b4194a
+creator_r,Bert Kalmar,e662e76e-9b06-4fa4-8c10-b6a1146a6082
+creator_r,Bo Gentry,f8b68bca-2f04-47b0-b721-20aec05ffeee
+creator_r,Bob Cole,15cd9eeb-429b-49e1-bbd9-03928e686b64
+creator_r,Dorothy Donnelly,86c25dd8-4a6b-4929-b5b8-81f062d4a17c
+creator_r,E. Ray Goetz,ef48411d-1f72-449a-b6a6-2360d78b5f99
+creator_r,Edward Eliscu,4d6f9e51-2092-45ec-81b2-f354f71c8ed7
+creator_r,Frank Mandel,28510311-bbeb-437d-9c41-fb9207080106
+creator_r,Gus Kahn,c9100b98-6a64-453a-94a6-21bb17eb9e36
+creator_r,Harry Gifford,e2bdf494-1d17-4408-ab8c-e42e0368289f
+creator_r,Irving Caesar,fb97c257-4f7b-4941-8b1d-0b9b78305a3e
+creator_r,Jacques Charles,a4961254-c9b8-43ed-bab0-624c4c816a3a
+creator_r,Joe Young,7871da09-bb85-4a08-90ca-dedd42a55e56
+creator_r,John Crook,e9c02e39-23ed-4e33-bdf0-5f246f614c5d
+creator_r,Johnnie Camacho,a097c5a5-2a5d-4e27-aa50-9f1772132d9e
+creator_r,Oscar Hammerstein Ii,dc997000-8778-4483-8c21-0314b55e9e99
+creator_r,Otto Harbach,cbcfb5a5-5b51-4107-a827-9f8dff0efd36
+creator_r,Pat Johnston,7dfa9ab2-7e97-4de7-aebf-2ea3f22880c5
+creator_r,Paul Cunningham,57c3bf1a-9cdc-4c66-b594-6ef8755995d8
+creator_r,Sigmund Romberg,fe424612-5ffe-4d97-aa13-4155f970a8f0
+creator_r,Tommy James,a937fcca-8dfb-4a87-a5be-dbd730c2ad04
+creator_r,Will Mahoney,fdde299f-66ef-47c1-980a-ef0ae53d03a9
+creator_r,Arthur Francis,a326949b-d52e-4a43-b6ed-e0f9b420333d
+creator_r,"""Zez"" Confrey",33936097-291c-47c2-a605-c5c2960b29d6
+creator_r,Al Piantadosi,619b29f3-8071-474c-b086-4edc6b7dc0c7
+creator_r,Albert Von Tilzer,8a37945b-ca33-4865-ab02-a43561ff75e6
+creator_r,Anatol Friedland,76ffab42-5bcd-4a9c-b3dc-34baea285da2
+creator_r,Arthur Hammerstein,17f45b22-dbd2-4b58-bdd3-8f141458de6a
+creator_r,Arthur Schwartz,1f7d7c71-06ce-456b-ae4d-277f63cd64d9
+creator_r,Arthur Siegel,20d59ac5-659a-41d8-b306-65c7c4006817
+creator_r,Bert Grant,a5e16a90-8a64-45f5-9bd4-f9ab01e02190
+creator_r,Bert Rule,ab4cb755-3097-4521-b842-71d76d9ddfe9
+creator_r,Bobby Bloom,b9fc3aa1-197a-466c-b038-c328f6dd45e6
+creator_r,C.M. Ziehrer,469be498-043a-4367-a2da-25044bbd9948
+creator_r,Cecil Macklin,9eb290b5-78cb-4209-bf76-364b1ac50c68
+creator_r,Chas. N. Daniels,8bddffbf-9c7a-40f7-a48d-e2076d0356fe
+creator_r,Cole Porter,a72f3c8f-3e2f-4211-8485-f61e997928ee
+creator_r,Con Conrad,9705517b-5e13-4359-93ec-8a20be925f3f
+creator_r,David Stamper,832ddfe9-e372-4d55-86af-88cb8be233e2
+creator_r,Don Raye,440034e8-e70c-4152-80d2-8eaced20ac43
+creator_r,Dudley Wilkinson,7da98a23-08f3-4719-a4c9-3ea4302ddcc2
+creator_r,E. Ray Goetz,9432e37a-30b5-4e20-b560-aae7d82516ca
+creator_r,Eddie Dorr,c23088d0-5582-4918-828d-20f7f7f4ad94
+creator_r,Edgar Leslie,2dcf83e7-4acf-424f-93c6-3ee231a934c0
+creator_r,Edward Madden,dc123a74-c1fa-4b12-a6be-ecb3ac755fa8
+creator_r,Edwin J. Weber,0a2571db-a88a-4362-bd8b-151ad2e211be
+creator_r,Emmerich Kalman,a6a9c25c-63ee-4684-97cf-5001447a3ef2
+creator_r,Ethelbert Nevin,5c18da91-4628-41bc-abb3-c185011e4bce
+creator_r,F.W. Meacham,a5e05b73-dde8-4f85-b691-abddbaa9f8a9
+creator_r,Frank Loesser,af9bcbf8-17b3-4291-82bc-cf476b9f1c32
+creator_r,Franz Schubert,b337b2d8-7986-4cbc-a4f8-316b4446fa23
+creator_r,Fred Fischer,6c8f0bb2-2836-4e06-b88a-f975d7a80039
+creator_r,Geo. W. Meyer,d5b0e0ea-cb3e-4afe-8342-d7bf81e427c2
+creator_r,George Arthurs,892f4f93-a518-4bf3-9acd-36c3fd53234b
+creator_r,George Botsford,70b97a5c-4838-4ab7-823c-9b5473d9cc99
+creator_r,George Gershwin,d11afc8a-2774-4b5f-b1cd-faf9b5abefa7
+creator_r,George M. Cohan,7024a872-0f2c-4dc2-8e8e-d11969823749
+creator_r,George Shearing,ae864f86-f2d6-44f4-a5ba-95ad195968e4
+creator_r,George W. Meyer,7edbd50a-17aa-4825-b236-9b9df05f1e2f
+creator_r,Gilbert C. Tennant,f002c302-790e-4868-a5ab-787912af31e5
+creator_r,Gitz Rice,7cb13503-3d7a-4537-a196-4e8988ba0fe0
+creator_r,Halsey K. Mohr,f29e5c1a-5df2-407b-b143-2becc0a780a3
+creator_r,Harold J. Rome,cae04c30-9ef1-4d6b-8688-bf8a9668a3ad
+creator_r,Harry Akst,d99b4411-fd35-46a6-8818-3a142069ca10
+creator_r,Harry Carroll,45ae6bc0-cfee-497f-8c04-8df9a7afe77c
+creator_r,Harry J. Lincoln,089b2373-fef8-459b-87f3-c42688aa36e9
+creator_r,Harry Piani,c3373807-56c3-4818-b5ca-54936105c7ac
+creator_r,Harry Tierney,d1b4ce84-c0a9-41ea-8387-966714aaacc1
+creator_r,Harry Von Tilzer,e4486ee7-836e-45eb-8366-c76d4f1739fe
+creator_r,Harry Warren,d0e283bc-f1fd-4db6-9f96-13cb18593a15
+creator_r,Henrietta Blanke-Belcher,defabfe0-96a0-4ba3-bee6-9bcdde6b4d0b
+creator_r,Henry I. Marshall,4593b1a1-e5e7-40ae-82db-7c3cab74d2b9
+creator_r,Henry Kailimai,f306f787-0f8a-41b9-a6ca-5b47133677b9
+creator_r,Herbert Richard Lorenz,a955dcc3-6c11-4164-b6bf-2da3e112a997
+creator_r,Herbert Stothart,de7f5356-f6d0-47e1-b0e0-6cecdda01164
+creator_r,Hermann Lohr,de236f84-4cf8-48dc-83c4-5c2b88c746fa
+creator_r,Hoagy Carmichael,00a94b51-24a8-4fcd-9041-9c00a197e637
+creator_r,Irving Berlin,66c16250-1f01-40ff-a769-3f28d3b315ea
+creator_r,Ivan Caryll,faf2d120-46f5-4b63-9c60-3edb96dbcd3b
+creator_r,Ivor Novello,42a7dbc6-028e-4fc6-b272-5cfc06d1575b
+creator_r,J. Anton Dailey,954cbe38-814f-4d14-8030-0306a32137e6
+creator_r,J.R. Shannon,6831e54b-1760-4f72-81ed-483530253458
+creator_r,Jack Egan,1b1c77cc-4862-43b6-8455-ea48ae701ab9
+creator_r,James Brockman,394d5fe8-4728-4df7-af4b-a35160bc09ca
+creator_r,James Duffy,b4988add-d8fa-40c4-a1fc-4ea420b66e01
+creator_r,James Heard,067f73f3-5bcc-4282-94a3-ed928d41111b
+creator_r,James V. Monaco,5d64d879-16b1-42bf-851f-51788c548cfc
+creator_r,Jean Schwartz,ccf2b0f3-eb7c-4228-91a1-9112420c12de
+creator_r,Jerome Kern,f071bca9-028e-49a3-8e0c-1713cbb2dfd9
+creator_r,Joe Goodwin,a83f1c3f-526c-4185-8b9a-3d22cd7b72eb
+creator_r,John Golden,11c04458-c3f4-4994-b4e1-0522b2556d2d
+creator_r,John Kander,a2b3f8ee-7467-437a-a9b3-388bbbe629fb
+creator_r,John L. Golden,ac885137-8927-4108-9f22-7b908772ff6d
+creator_r,Jule Styne,6d01044c-f947-4a7c-90bb-ec66bdf2487e
+creator_r,Julian Robledo,e5fb193c-8da4-4f2a-993f-3cbb73061356
+creator_r,Kendis And Paley,8fdbd72d-23fd-47c8-9e05-17ae4cd344fc
+creator_r,Kurt Weill,63d7afa1-539d-4049-9d15-7b0b65e8d4be
+creator_r,Lao Silesu,bd03aef3-098f-4c85-bd49-a3a1d1fc6a7d
+creator_r,Leo Edwards,e80531a7-1e68-40ae-beb1-6c15644bc486
+creator_r,Leo Fall,3875f871-65b2-40df-b98b-feed98aa4cbb
+creator_r,Leon Flatow,98016ad6-baac-4662-88e1-4a4cc6a07965
+creator_r,Leonard Bernstein,e8783c6d-fd24-44c4-bd93-65d5cc0a7123
+creator_r,Leslie Stuart,5f4b332e-77fd-42cd-9229-439259839134
+creator_r,Lewis E. Gensler,c32619b3-c309-46ee-988e-840457e779e0
+creator_r,Lorenz Hart,8a9d11e5-0252-4f0d-817a-1fd587a0dd7d
+creator_r,Mack Gordon,ca2cbe27-618e-45f7-8a88-26e58c471c6e
+creator_r,Marshall M. Bartholomew,331fdb50-2927-431f-a3c8-f58660f1200f
+creator_r,Maurice Abrahams,e3dd7233-17a4-4744-9e1c-2a892ad9c0a4
+creator_r,Maurice Yvain,5926a8d9-4a66-4be7-901b-22f94011ce3e
+creator_r,Max C. Eugene,da83e106-1c79-4c32-b9c6-7878439929c6
+creator_r,Max Kortlander,857aa73e-1785-4458-92e3-d1e368496e0e
+creator_r,Max Steiner,812ca557-b25a-4d96-b05c-fbf6e3581686
+creator_r,Melville Gideon,26c8b743-6db2-4df4-9c58-285d80b56f49
+creator_r,Morris Albert,08bebe70-ef1d-4ee6-a542-56082856b15b
+creator_r,Mort Dixon,9b5e6706-5986-4d67-b255-e4bc53e701d2
+creator_r,Nat D. Ayer,c6067a1d-4407-4e78-8e40-95967ac29a52
+creator_r,Noel Coward,a959ea8f-8574-46cf-b1e5-ed8179d24b04
+creator_r,Oliver G. Wallace,d3ea4f56-b4fa-4d46-bef7-b0633792653d
+creator_r,Oscar Straus,30d20f84-be47-42eb-a0d3-60f8f6456a5f
+creator_r,Otto Motzan,4e56e6ad-cf63-4230-a40a-8cbcbb701e0b
+creator_r,Paul Morton,683b0f95-36e8-44c4-8362-e305e6908621
+creator_r,Paul Simon,91b47045-1c38-48e3-a519-bd24a61994f0
+creator_r,Percy Wenrich,968ac14c-7c57-4415-9588-fdcdda669dbb
+creator_r,Pete Wendling,a44ccb4a-5aba-46ba-a678-b7e39aa4f3e2
+creator_r,Raymond B. Egan,51104e36-6393-4f93-b60d-b4d7d18aee3d
+creator_r,Raymond Hubbell,f69508a7-494f-4e8d-8867-c9e617b9e781
+creator_r,Richard Rodgers,088dc11e-c09e-44c7-a2aa-42bd60b11e69
+creator_r,Robert Stolz,3c79a219-727d-433b-8297-beb48f4c0999
+creator_r,Rosamond Johnson,14861472-c1fd-46be-9a9c-283a68586240
+creator_r,Roy Turk,33b3c099-ce18-4928-ad43-02b4b28ae669
+creator_r,Sammy Fain,7860e729-c2e8-43bf-bfdf-e76aa3b34c88
+creator_r,Schuyler Greene,fb7056ef-b917-4185-b91d-ce36def18a5a
+creator_r,Seymour Furth,c9135a9c-5944-475d-ae57-83408cabc56a
+creator_r,Sheldon M. Harnick,2330e376-1ba8-408e-8986-452770121783
+creator_r,Sigmund Romberg,53f4b612-2a34-4576-8711-2aa7ff543607
+creator_r,T. Lawrason Riggs,18b43634-146a-4668-aa6d-d9af7a1d5faa
+creator_r,Ted Snyder,591630a2-2ac7-4a13-831a-ac95c2fdb955
+creator_r,Tom Mellor,42ff1baf-34be-43f7-b6c9-833baacb92d2
+creator_r,Tony Jackson,3a17adfc-4fe2-4997-ba92-455ffa74f721
+creator_r,Vaughn De Leath,4c07006c-1e99-4ca3-80f3-363bd44d72e5
+creator_r,Victor Herbert,906fa01d-88f4-496a-a0fd-57f79875f301
+creator_r,Victor Schertzinger,adfb36d5-e375-48e3-a73a-9a788a892012
+creator_r,Vincent Rose,b3c942d5-a4c4-41c4-8967-d85a46776b22
+creator_r,Vincent Youmans,74a70416-2b12-4328-80b6-066e3675dd09
+creator_r,Walter Donaldson,1c382379-c3b0-46e0-8370-4cde261a513c
+creator_r,Walter Kollo,62233a70-16b0-41a3-991f-963b4edb0d20
+creator_r,Will Grosz,2bf694b9-18bb-45cc-a15f-e033b5d4dca4
+creator_r,Will R. Anderson,54f71222-680c-4153-9c3d-acf33e54c928
+creator_r,William Daly,838ab04e-7a83-4d9c-ae2a-6c76ed482d8b
+creator_r,Worton David,f456acf0-c220-4623-bb42-2f7a5793fb42
