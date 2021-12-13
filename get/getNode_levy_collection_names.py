@@ -6,7 +6,7 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 type = 'jsonapi/node/levy_collection_names'
 
 
-# Function grabs name and uris from taxonomy terms.
+# Function grabs name and uris from levy_collection_items.
 def fetchData(data):
     for count, term in enumerate(data):
         itemDict = {}

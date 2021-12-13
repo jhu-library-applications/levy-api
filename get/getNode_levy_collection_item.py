@@ -6,10 +6,13 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 type = 'jsonapi/node/levy_collection_item'
 ext = '?page[limit=50]?include=field_people.field_name,field_people.field_roles,field_people.paragraph_type'
 
+# List of single value fields
 relation_dict = ['node_type', 'field_pdf', 'field_publisher']
+# List of repeatable fields
 relation_list = ['field_subjects', 'field_people',
                  'field_instrumentation_metadata', 'field_images',
                  'field_duplicates', 'field_composition_metadata']
+# List of fields not to record
 skip_fields = ['body', 'revision_timestamp', 'revision_log', 'path',
                'revision_translation_affected', 'drupal_internal__vid',
                'promote', 'sticky', 'default_langcode']

@@ -1,12 +1,12 @@
 import requests
 import pandas as pd
 
-# Your baseURL: https://example.com+//jsonapi/node/levy_collection_item'
-baseURL = 'https://levy-test.mse.jhu.edu//jsonapi/'
+# Your baseURL: https://example.com
+baseURL = 'https://levy-test.mse.jhu.edu//'
 type = 'jsonapi/paragraph/collection_name'
 
 
-# Function grabs name and uris from taxonomy terms.
+# Function grabs name and uris from collection_name.
 def fetchData(data):
     for count, term in enumerate(data):
         itemDict = {}

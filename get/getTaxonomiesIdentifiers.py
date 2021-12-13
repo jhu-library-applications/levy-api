@@ -10,7 +10,7 @@ if not os.path.exists(directory):
 # Your baseURL: https://example.com+//jsonapi/taxonomy_term/
 baseURL = 'https://levy-test.mse.jhu.edu//jsonapi/taxonomy_term/'
 
-# Machine names of taxonomies for your drupal instance.
+# Machine names of taxonomies for your Drupal instance.
 taxonomies = ['composition_metadata', 'c', 'creator_r', 'duplicat',
               'instrumentation_metadata', 'publishers', 'subjects']
 
