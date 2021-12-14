@@ -11,11 +11,6 @@ if not os.path.exists(directory):
 
 matchDictionary = {'AggregatedByfield_publisher.csv': 'publishers.csv',
                    'AggregatedByfield_subjects.csv': 'subjects.csv',
-                   'AggregatedByarranger.csv': 'creator_r.csv',
-                   'AggregatedBycomposer.csv': 'creator_r.csv',
-                   'AggregatedBylyricist.csv': 'creator_r.csv',
-                   'AggregatedByno_role.csv': 'creator_r.csv',
-                   'AggregatedBypseudonym.csv': 'creator_r.csv',
                    'AggregatedByfield_instrumentation_metadata.csv':
                    'instrumentation_metadata.csv'}
 
@@ -64,6 +59,7 @@ for count, row in newDF.iterrows():
                     newValue = row['taxonomy']+':::'+row['id']
                     done[identifier] = {taxonomy: newValue}
             else:
+                print(row)
                 newValue = row['taxonomy']+':::'+row['id']
                 done[identifier] = {taxonomy: newValue}
 print(done)

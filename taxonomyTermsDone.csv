@@ -1,4 +1,4 @@
-fileIdentifier,field_publisher,composer
+fileIdentifier,field_publisher,field_instrumentation_metadata
 Levy-194-010,publishers:::20beb578-bd1c-4a33-8946-bba15ba7525f,
 Levy-194-065,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
 Levy-194-066,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
@@ -45,7 +45,6 @@ Levy-195-006,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
 Levy-195-007,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
 Levy-195-008,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
 Levy-195-009,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
-Levy-195-010,,creator_r:::d11afc8a-2774-4b5f-b1cd-faf9b5abefa7
 Levy-195-011,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
 Levy-195-012,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
 Levy-195-013,publishers:::94cd8bff-f23c-4656-85db-35e954ac71c6,
@@ -1785,8 +1784,8 @@ Levy-213-008,publishers:::7fa1b582-c57c-434b-8a11-5c4b13404cd3,
 Levy-213-009,publishers:::3b08b919-6b49-4c79-a371-a3e7cd50e592,
 Levy-213-010,publishers:::7fa1b582-c57c-434b-8a11-5c4b13404cd3,
 Levy-213-011,publishers:::7fa1b582-c57c-434b-8a11-5c4b13404cd3,
-Levy-213-012,,creator_r:::c4cb7946-0173-4c66-99b2-fbb858bf2b4c|creator_r:::088dc11e-c09e-44c7-a2aa-42bd60b11e69
-Levy-213-013,,creator_r:::c4cb7946-0173-4c66-99b2-fbb858bf2b4c|creator_r:::088dc11e-c09e-44c7-a2aa-42bd60b11e69
+Levy-213-012,,instrumentation_metadata:::2404b88b-07b7-47e5-aa56-844a51ee2fdb|instrumentation_metadata:::8e2e9195-b52b-448b-ba9f-06dc7eba9de7
+Levy-213-013,,instrumentation_metadata:::2404b88b-07b7-47e5-aa56-844a51ee2fdb|instrumentation_metadata:::8e2e9195-b52b-448b-ba9f-06dc7eba9de7
 Levy-213-014,publishers:::073182e4-96f4-4f03-a9db-a15fff929583,
 Levy-213-015,publishers:::d06e529f-fdda-4510-a9ab-3777551966b3,
 Levy-213-016,publishers:::e6b21492-9825-40fa-94c2-1fc28c7667a8,

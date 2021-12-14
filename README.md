@@ -27,6 +27,44 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
  - subjects
 
 ## To upload new items:
+
+### Prep data
+1. Get existing taxonomy terms from Drupal
+    - script: `getTaxonomyIdentifiers`
+    - outputs: `levy-api/taxonomies` (spreadsheets containing all existing taxonomy terms)
+2. Get existing levy_collection_names from Drupal
+    - script: `getNode_levy_collection_names.py`
+    - output: `allCollectionNames.csv` (spreadsheet containing all existing levy_collection_names)
+3. Get list taxonomy terms and names from spreadsheet of new data
+    - input:
+        - `allCollectionNames.csv` (spreadsheet containing all existing levy_collection_names)
+        - `levy-api/taxonomies` (spreadsheets containing all existing taxonomy terms)
+        - spreadsheet of new data
+    - script: `explodeTaxonomiesAndNames.py`
+    - output:
+        - `levy-api/aggregated` (spreadsheet of taxonomy terms aggregated by taxonomy name)
+        - `levy-api/aggregated-role` (spreadsheets of levy_collection_names grouped by role and aggregated by title)
+4. Compare new taxonomy terms to existing terms in Drupal
+    - input:
+        - `levy-api/taxonomies`
+        - `levy-api/aggregated`
+    - script: `findExistingTaxTermsAndTermsToCreate.py`
+    - output:
+        - `levy-api/merged` (spreadsheets of taxonomy terms merged with Drupal identifiers, if they exist)
+        - `taxonomyTermsDone.csv` (list of taxonomy terms that already exist in Drupal)
+        - `taxonomyTermsToCreate.csv` (list of taxonomy that DO NOT exist in Drupal and need to be created)
+
+5. Compare new levy_collection_names to existing terms in Drupal
+    - input:
+        - `allCollectionNames.csv` (spreadsheet containing all existing levy_collection_names)
+        - `levy-api/aggregated-role` (spreadsheets of levy_collection_names grouped by role and aggregated by title)
+    - script: `findExistingCollNamesAndNamesToCreate.py`
+    - output:
+        - `mergedCollectioinNames.csv`
+        - `levy_collection_namesDone.csv`
+        - `levy_collection_namesToCreate.csv`
+
+### Post data
 1. Post new taxonomy terms, record identifiers
     - script: postTaxonomyTerms.py
     - results: logOfTaxonomyTermsAdded.csv
@@ -46,5 +84,3 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
     - Update `parent_id` in collection_item_image paragraphs with `drupal_internal__nid` from levy_collection_items
     - Update `field_people` with `type`, `id`, and `target_revision_id` from collection_name
     - Update `field_images` with `type`, `id`, and `target_revision_id` from collection_item_image
-
-9.

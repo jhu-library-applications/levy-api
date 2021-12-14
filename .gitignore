@@ -137,3 +137,5 @@ dmypy.json
 secrets.py
 *.txt
 *.jpg
+*.csv
+!/taxonomies/
