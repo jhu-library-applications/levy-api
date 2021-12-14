@@ -4,8 +4,15 @@ test: https://levy-test.mse.jhu.edu
 
 prod: https://levysheetmusic.mse.jhu.edu/
 
-
 Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/api-overview
+
+## Drupal settings
+
+Install JSON:API module
+ - Go to www.example.edu//admin/modules, navigate to Web Services, and check `JSON:API`
+
+Install Paragraph Type Permissions module
+ - Go to www.example.edu//admin/modules, navigate to Paragraphs, and check `Paragraphs Type Permissions`
 
 ## Entities in Levy Sheet Music:
 
@@ -60,9 +67,9 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
         - `levy-api/aggregated-role` (spreadsheets of **levy_collection_names** grouped by role and aggregated by title)
     - script: [`findExistingCollNamesAndNamesToCreate.py`](https://github.com/mjanowiecki/levy-api/blob/main/findExistingCollNamesAndNamesToCreate.py)
     - output:
-        - `mergedCollectioinNames.csv` (spreadsheets of levy_collection_names  merged with Drupal identifiers, if they exist)
-        - `levy_collection_namesDone.csv` (list of levy_collection_names that already exist in Drupal)
-        - `levy_collection_namesToCreate.csv` (list of levy_collection_names that DO NOT exist in Drupal and need to be created)
+        - `mergedCollectioinNames.csv` (spreadsheets of **levy_collection_names** merged with Drupal identifiers, if they exist)
+        - `levy_collection_namesDone.csv` (list of **levy_collection_names** that already exist in Drupal)
+        - `levy_collection_namesToCreate.csv` (list of **levy_collection_names** that DO NOT exist in Drupal and need to be created)
 
 ### Post data
 1. Post new taxonomy terms and record identifiers.
