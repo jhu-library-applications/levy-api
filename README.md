@@ -66,7 +66,7 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
 
 ### Post data
 1. Post new taxonomy terms, record identifiers
-    - script: []`postTaxonomyTerms.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postTaxonomyTerms.py)
+    - script: [`postTaxonomyTerms.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postTaxonomyTerms.py)
     - results: `logOfTaxonomyTermsAdded.csv`
 2. Post new levy_collection_names, record identifiers
     - script: [`postNode_levy_collection_names.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postNode_levy_collection_names.py)
