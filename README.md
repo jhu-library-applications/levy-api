@@ -30,10 +30,10 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
 
 ### Prep data
 1. Get existing taxonomy terms from Drupal
-    - script: `getTaxonomyIdentifiers`
+    - script: `get/getTaxonomyIdentifiers.py`
     - outputs: `levy-api/taxonomies` (spreadsheets containing all existing taxonomy terms)
 2. Get existing levy_collection_names from Drupal
-    - script: `getNode_levy_collection_names.py`
+    - script: `get/getNode_levy_collection_names.py`
     - output: `allCollectionNames.csv` (spreadsheet containing all existing levy_collection_names)
 3. Get list taxonomy terms and names from spreadsheet of new data
     - input:
