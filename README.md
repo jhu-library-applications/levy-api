@@ -12,5 +12,10 @@ Install [JSON:API module](https://www.drupal.org/docs/core-modules-and-themes/co
 Install [Paragraph Type Permissions sub-module](https://www.drupal.org/project/paragraphs)
  - Go to www.example.edu//admin/modules, navigate to Paragraphs, and check `Paragraphs Type Permissions`
 
+## File upload limits
+
+PDFs: 2MB
+Images: 2MB
+
 ## Wiki
 Please see the [wiki](https://github.com/mjanowiecki/levy-api/wiki) for instructions and more information about the API.
