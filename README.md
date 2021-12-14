@@ -31,26 +31,26 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
 ### Prep data
 1. Get existing taxonomy terms from Drupal
     - script: [`get/getTaxonomyIdentifiers.py`](https://github.com/mjanowiecki/levy-api/blob/main/get/getTaxonomiesIdentifiers.py)
-    - outputs: `levy-api/taxonomies` (spreadsheets containing all existing taxonomy terms)
+    - outputs: `levy-api/taxonomies` (folder containing taxonomy spreadsheets with all existing taxonomy terms))
 2. Get existing levy_collection_names from Drupal
     - script: [`get/getNode_levy_collection_names.py`](https://github.com/mjanowiecki/levy-api/blob/main/get/getNode_levy_collection_names.py)
     - output: `allCollectionNames.csv` (spreadsheet containing all existing levy_collection_names)
 3. Get list taxonomy terms and names from spreadsheet of new data
     - input:
         - `allCollectionNames.csv` (spreadsheet containing all existing levy_collection_names)
-        - `levy-api/taxonomies` (spreadsheets containing all existing taxonomy terms)
+        - `levy-api/taxonomies` (folder containing taxonomy spreadsheets with all existing taxonomy terms)
         - spreadsheet of new data
     - script: [`explodeTaxonomiesAndNames.py`](https://github.com/mjanowiecki/levy-api/blob/main/explodeTaxonomiesAndNames.py)
     - output:
-        - `levy-api/aggregated` (spreadsheet of taxonomy terms aggregated by taxonomy name)
-        - `levy-api/aggregated-role` (spreadsheets of levy_collection_names grouped by role and aggregated by title)
+        - `levy-api/aggregated` (folder of taxonomy spreadsheets aggregated by taxonomy name)
+        - `levy-api/aggregated-role` (folder of levy_collection_names spreadsheets grouped by role and aggregated by title)
 4. Compare new taxonomy terms to existing terms in Drupal
     - input:
         - `levy-api/taxonomies`
         - `levy-api/aggregated`
     - script: [`findExistingTaxTermsAndTermsToCreate.py`](https://github.com/mjanowiecki/levy-api/blob/main/findExistingTaxTermsAndTermsToCreate.py)
     - output:
-        - `levy-api/merged` (spreadsheets of taxonomy terms merged with Drupal identifiers, if they exist)
+        - `levy-api/merged` (folder containing taxonomy spreadsheets with terms merged with Drupal identifiers, if they exist)
         - `taxonomyTermsDone.csv` (list of taxonomy terms that already exist in Drupal)
         - `taxonomyTermsToCreate.csv` (list of taxonomy that DO NOT exist in Drupal and need to be created)
 
@@ -60,9 +60,9 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
         - `levy-api/aggregated-role` (spreadsheets of levy_collection_names grouped by role and aggregated by title)
     - script: [`findExistingCollNamesAndNamesToCreate.py`](https://github.com/mjanowiecki/levy-api/blob/main/findExistingCollNamesAndNamesToCreate.py)
     - output:
-        - `mergedCollectioinNames.csv`
-        - `levy_collection_namesDone.csv`
-        - `levy_collection_namesToCreate.csv`
+        - `mergedCollectioinNames.csv` (spreadsheets of levy_collection_names  merged with Drupal identifiers, if they exist)
+        - `levy_collection_namesDone.csv` (list of levy_collection_names that already exist in Drupal)
+        - `levy_collection_namesToCreate.csv` (list of levy_collection_names that DO NOT exist in Drupal and need to be created)
 
 ### Post data
 1. Post new taxonomy terms, record identifiers
@@ -80,7 +80,8 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
     - results: `logofParagraphCollectionItemImages.csv`
 6. Construct levy_collection_items json using taxonomy, collection_name, and collection_item_images identifiers
 7. Post levy_collection_items
-    - Update `parent_id` in collection_name paragraphs with `drupal_internal__nid` from `levy_collection_items`, record `drupal_internal__revision_id`
-    - Update `parent_id` in collection_item_image paragraphs with `drupal_internal__nid` from levy_collection_items
-    - Update `field_people` with `type`, `id`, and `target_revision_id` from collection_name
-    - Update `field_images` with `type`, `id`, and `target_revision_id` from collection_item_image
+    - script: [`postNode_levy_collection_item.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postNode_levy_collection_item.py)
+      - Updates `parent_id` in collection_name paragraphs with `drupal_internal__nid` from `levy_collection_items`, record `drupal_internal__revision_id`
+      - Updates `parent_id` in collection_item_image paragraphs with `drupal_internal__nid` from levy_collection_items
+      - Updates `field_people` with `type`, `id`, and `target_revision_id` from collection_name
+      - Updates `field_images` with `type`, `id`, and `target_revision_id` from collection_item_image
