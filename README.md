@@ -66,17 +66,17 @@ Drupal JSON:API module: https://www.drupal.org/docs/core-modules-and-themes/core
 
 ### Post data
 1. Post new taxonomy terms, record identifiers
-    - script: `postTaxonomyTerms.py`
+    - script: []`postTaxonomyTerms.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postTaxonomyTerms.py)
     - results: `logOfTaxonomyTermsAdded.csv`
 2. Post new levy_collection_names, record identifiers
-    - script: `postNode_levy_collection_names.py`
+    - script: [`postNode_levy_collection_names.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postNode_levy_collection_names.py)
     - results: `logOfLevyCollectionNamesAdded.csv`
 3. Create spreadsheet for collection_name paragraphs for each `field_people` field, using levy_collection_names and creator_r identifiers.
 4. Post new collection_name paragraphs, record identifiers
-    - script: `postParagraph_collection_name.py`
+    - script: [`postParagraph_collection_name.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postParagraph_collection_name.py)
     - results: `logofParagraphCollectionNames.csv`
 5. Post new files to Drupal site & create associated collection_item_images paragraphs, record identifiers
-    - script: `postFilesAndParagraph_collection_item_images.py`
+    - script: [`postFilesAndParagraph_collection_item_images.py`](https://github.com/mjanowiecki/levy-api/blob/main/post/postFilesAndParagraph_collection_item_images.py.py)
     - results: `logofParagraphCollectionItemImages.csv`
 6. Construct levy_collection_items json using taxonomy, collection_name, and collection_item_images identifiers
 7. Post levy_collection_items
