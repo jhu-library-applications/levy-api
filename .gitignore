@@ -138,5 +138,6 @@ secrets.py
 *.txt
 *.jpg
 *.csv
+*.pdf
 !/taxonomies/
 !allCollectionNames.csv
