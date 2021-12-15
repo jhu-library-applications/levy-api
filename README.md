@@ -15,7 +15,19 @@ Install [Paragraph Type Permissions sub-module](https://www.drupal.org/project/p
 ## File upload limits
 
 PDFs: 2MB
+
 Images: 2MB
+
+## Authentication
+
+In your post folder, please create a `secrets.py` file that contains the following information. This information will be used in the scripts that require authentication to post to Drupal.
+
+```python
+username='username'
+password='password'
+```
+
+In order to ensure that this file is not uploaded to GitHub, add `secrets.py` to  your `.gitignore`.
 
 ## Wiki
 Please see the [wiki](https://github.com/mjanowiecki/levy-api/wiki) for instructions and more information about the API.
