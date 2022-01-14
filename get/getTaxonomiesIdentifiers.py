@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 import os
 
-directory = '/Users/michelle/Documents/GitHub/levy-api/taxonomies/'
+directory = '/Users/michelle/Documents/GitHub/levy-api/existing-taxonomies/'
 if not os.path.exists(directory):
     os.mkdir(directory)
 

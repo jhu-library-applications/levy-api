@@ -3,6 +3,7 @@ import secrets
 import time
 from datetime import datetime
 import pandas as pd
+import os
 
 username = secrets.username
 password = secrets.password
@@ -12,6 +13,10 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 file = 'jsonapi/node/levy_collection_item/field_pdf'
 
 startTime = time.time()
+
+directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
+if not os.path.exists(directory):
+    os.mkdir(directory)
 
 # Authenicate to Drupal site, get token
 s = requests.Session()
@@ -53,7 +58,9 @@ for index, row in df.iterrows():
 # Convert results to DataFrame, export as CSV
 log = pd.DataFrame.from_dict(allItems)
 dt = datetime.now().strftime('%Y-%m-%d')
-log.to_csv('logofPDFs_'+dt+'.csv')
+newFile = 'logOfPDFs_'+dt+'.csv'
+fullname = os.path.join(directory, newFile)
+log.to_csv(fullname)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

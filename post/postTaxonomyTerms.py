@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import time
 from datetime import datetime
+import os
 
 username = secrets.username
 password = secrets.password
@@ -13,6 +14,10 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 taxonomyLink = 'jsonapi/taxonomy_term/'
 
 startTime = time.time()
+
+directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
+if not os.path.exists(directory):
+    os.mkdir(directory)
 
 # Authenicate to Drupal site, get token
 s = requests.Session()
@@ -36,6 +41,7 @@ df = pd.read_csv(filename)
 # Loop through DataFrame and create JSON for each row
 all_items = []
 for index, row in df.iterrows():
+    row = row
     print(index)
     tax_item = {}
     tax_dict = {}
@@ -53,18 +59,19 @@ for index, row in df.iterrows():
     data = post.get('data')
     id = data.get('id')
     link = data['links']['self']['href']
-    results = {}
-    results['name'] = name
-    results['id'] = id
-    results['link'] = link
-    print(results)
+    row['name'] = name
+    row['id'] = id
+    row['link'] = link
+    print('name')
     print('')
-    all_items.append(results)
+    all_items.append(row)
 
 # Convert results to DataFrame, export as CSV
 log = pd.DataFrame.from_dict(all_items)
 dt = datetime.now().strftime('%Y-%m-%d')
-log.to_csv('logOfTaxonomyTermsAdded_'+dt+'.csv')
+newFile = 'logOfTaxonomyTermsAdded_'+dt+'.csv'
+fullname = os.path.join(directory, newFile)
+log.to_csv(fullname, index=False)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

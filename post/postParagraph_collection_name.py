@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import time
 from datetime import datetime
+import os
 
 username = secrets.username
 password = secrets.password
@@ -13,6 +14,10 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 type = 'jsonapi/paragraph/collection_name/'
 
 startTime = time.time()
+
+directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
+if not os.path.exists(directory):
+    os.mkdir(directory)
 
 # Authenicate to Drupal site, get token
 s = requests.Session()
@@ -66,7 +71,9 @@ for index, row in df.iterrows():
 # Convert results to DataFrame, export as CSV
 log = pd.DataFrame.from_dict(allItems)
 dt = datetime.now().strftime('%Y-%m-%d')
-log.to_csv('logofParagraphCollectionName_'+dt+'.csv')
+newFile = 'logOfParagraphCollectionName_'+dt+'.csv'
+fullname = os.path.join(directory, newFile)
+log.to_csv(fullname)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

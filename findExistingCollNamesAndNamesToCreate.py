@@ -3,11 +3,14 @@ from datetime import datetime
 
 aggregatedRoles = '/Users/michelle/Documents/GitHub/levy-api/aggregated-roles/'
 typeSheet = 'allCollectionNames.csv'
+rolesSheet = '/Users/michelle/Documents/GitHub/levy-api/existing-taxonomies/creator_r.csv'
 
 rolesList = ['AggregatedByarranger.csv', 'AggregatedBycomposer.csv',
              'AggregatedBylyricist.csv', 'AggregatedByno_role.csv',
              'AggregatedBypseudonym.csv']
 
+rolesDF = pd.read_csv(rolesSheet)
+rolesDF = rolesDF.rename(columns={'name': 'role', 'id': 'creator_role_id'})
 
 newDF = pd.DataFrame()
 for filename in rolesList:
@@ -18,6 +21,7 @@ for filename in rolesList:
     if filename.endswith('.csv'):
         df = pd.read_csv(filename)
         df['role'] = role
+        df = pd.merge(df, rolesDF, how='left', on=['role'])
         newDF = newDF.append(df, ignore_index=True, sort=True)
 
 newDF = newDF.drop_duplicates()
@@ -32,7 +36,7 @@ existing['title'] = existing['title'].str.strip()
 frame = pd.merge(newDF, existing, how='left', on=['title'])
 frame.drop_duplicates(inplace=True)
 dt = datetime.now().strftime('%Y-%m-%d %H.%M.%S')
-renamedKey = typeSheet.replace('all', 'merged')
+renamedKey = typeSheet.replace('all', 'matched_')
 frame.to_csv(renamedKey, index=False)
 
 newDF = pd.read_csv(renamedKey, header=0)

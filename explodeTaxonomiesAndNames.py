@@ -11,7 +11,7 @@ if args.file:
 else:
     filename = input('Enter filename (including \'.csv\'): ')
 
-tax_dir = '/Users/michelle/Documents/GitHub/levy-api/aggregated/'
+tax_dir = '/Users/michelle/Documents/GitHub/levy-api/aggregated-taxonomies/'
 if not os.path.exists(tax_dir):
     os.mkdir(tax_dir)
 

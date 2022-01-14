@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import time
 from datetime import datetime
+import os
 
 username = secrets.username
 password = secrets.password
@@ -13,6 +14,10 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 type = 'jsonapi/node/levy_collection_names/'
 
 startTime = time.time()
+
+directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
+if not os.path.exists(directory):
+    os.mkdir(directory)
 
 # Authenicate to Drupal site, get token
 s = requests.Session()
@@ -40,9 +45,9 @@ for index, row in df.iterrows():
     tax_item = {}
     tax_dict = {}
     full_type = 'node--levy_collection_names'
-    name = row['name']
+    title = row['title']
     tax_dict['type'] = full_type
-    tax_dict['attributes'] = {'title': name, 'status': True}
+    tax_dict['attributes'] = {'title': title, 'status': True}
     tax_item['data'] = tax_dict
     metadata = json.dumps(tax_item)
 
@@ -63,7 +68,9 @@ for index, row in df.iterrows():
 # Convert results to DataFrame, export as CSV
 log = pd.DataFrame.from_dict(all_items)
 dt = datetime.now().strftime('%Y-%m-%d')
-log.to_csv('logOfLevyCollectionNamesAdded_'+dt+'.csv')
+newFile = 'logOfNodeCollectionNamesAdded_'+dt+'.csv'
+fullname = os.path.join(directory, newFile)
+log.to_csv(fullname, index=False)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)
