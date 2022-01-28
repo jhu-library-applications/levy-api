@@ -1,5 +1,14 @@
 import pandas as pd
 from datetime import datetime
+import os
+
+termsDone = '/Users/michelle/Documents/GitHub/levy-api/termsDone'
+if not os.path.exists(termsDone):
+    os.mkdir(termsDone)
+
+termsToCreate = '/Users/michelle/Documents/GitHub/levy-api/termsToCreate'
+if not os.path.exists(termsToCreate):
+    os.mkdir(termsToCreate)
 
 aggregatedRoles = '/Users/michelle/Documents/GitHub/levy-api/aggregated-roles/'
 typeSheet = 'allCollectionNames.csv'
@@ -55,8 +64,12 @@ for count, row in newDF.iterrows():
 toCreate = pd.DataFrame.from_dict(toCreate)
 print(toCreate.head)
 toCreate.drop_duplicates(inplace=True)
-toCreate.to_csv('levy_collection_namesToCreate.csv', index=False)
+filename = 'levy_collection_namesToCreate.csv'
+fullname = os.path.join(termsToCreate, filename)
+toCreate.to_csv(fullname, index=False)
+
 
 done = pd.DataFrame.from_dict(done)
-print(done.head)
-done.to_csv('levy_collection_namesDone.csv', index=False)
+filename2 = 'levy_collection_namesDone.csv'
+fullname2 = os.path.join(termsDone, filename2)
+done.to_csv(fullname2, index=False)
