@@ -93,13 +93,14 @@ frame['fileIdentifier'] = frame['fileIdentifier'].str.split('|')
 frame.reset_index()
 frame = frame.explode('fileIdentifier')
 frame.sort_values(by=['fileIdentifier'], inplace=True)
-frame.to_csv('paragraph_collection_namesToAdd.csv', index=False)
+dt = datetime.now().strftime('%Y-%m-%d')
+newFile = 'logOfparagraph_collection_namesToAdd_'+dt+'.csv'
+fullname3 = os.path.join(directory, newFile)
+frame.to_csv(fullname3, index=False)
 
 # Post Paragraph collection_name
-
-filename3 = 'paragraph_collection_namesToAdd.csv'
 endpoint = 'jsonapi/paragraph/collection_name/'
-df_3 = pd.read_csv(filename3)
+df_3 = pd.read_csv(fullname3)
 
 allItems = []
 for index, row in df_3.iterrows():
@@ -137,7 +138,7 @@ for index, row in df_3.iterrows():
 log = pd.DataFrame.from_dict(allItems)
 newFile = 'logOfParagraphCollectionName.csv'
 fullname = os.path.join(directory, newFile)
-log.to_csv(fullname)
+log.to_csv(fullname, index=False)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)
