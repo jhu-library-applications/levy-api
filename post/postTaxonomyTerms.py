@@ -15,6 +15,7 @@ taxonomyLink = 'jsonapi/taxonomy_term/'
 
 startTime = time.time()
 
+termsToCreate = '/Users/michelle/Documents/GitHub/levy-api/termsToCreate'
 directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
 if not os.path.exists(directory):
     os.mkdir(directory)
@@ -36,7 +37,8 @@ s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
 
 # Open taxonomy CSV as DataFrame
 filename = 'taxonomyTermsToCreate.csv'
-df = pd.read_csv(filename)
+fullname = os.path.join(termsToCreate, filename)
+df = pd.read_csv(fullname)
 
 # Loop through DataFrame and create JSON for each row
 all_items = []

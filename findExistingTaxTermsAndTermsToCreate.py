@@ -13,6 +13,10 @@ termsDone = '/Users/michelle/Documents/GitHub/levy-api/termsDone'
 if not os.path.exists(termsDone):
     os.mkdir(termsDone)
 
+termsToCreate = '/Users/michelle/Documents/GitHub/levy-api/termsToCreate'
+if not os.path.exists(termsToCreate):
+    os.mkdir(termsToCreate)
+
 matchDictionary = {'AggregatedByfield_publisher.csv': 'publishers.csv',
                    'AggregatedByfield_subjects.csv': 'subjects.csv',
                    'AggregatedByfield_instrumentation_metadata.csv':
@@ -54,10 +58,11 @@ for count, row in newDF.iterrows():
         done.append(row)
 
 toCreate = pd.DataFrame.from_dict(toCreate)
-
-toCreate.to_csv('taxonomyTermsToCreate.csv', index=False)
+filename = 'taxonomyTermsToCreate.csv'
+fullname = os.path.join(termsToCreate, filename)
+toCreate.to_csv(fullname, index=False)
 
 done = pd.DataFrame.from_dict(done)
 filename2 = 'taxonomyTermsDone.csv'
-fullname = os.path.join(termsDone, filename2)
-done.to_csv(fullname, index=False)
+fullname2 = os.path.join(termsDone, filename2)
+done.to_csv(fullname2, index=False)
