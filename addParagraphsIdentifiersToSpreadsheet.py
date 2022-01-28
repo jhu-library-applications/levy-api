@@ -4,7 +4,7 @@ filename = 'logOfParagraphCollectionName.csv'
 df = pd.read_csv(filename, header=0)
 
 filename2 = '01_GottesmanFinalMetadata_2021-12-03.csv'
-new_items = pd.read_csv(filename2)
+new_items = pd.read_csv(filename2, header=0)
 
 df.drop(['link', 'creator_role_id', 'levy_collection_names_id'], axis=1, inplace=True)
 pivoted = pd.pivot_table(df, index=['fileIdentifier'], values=['paragraph_id'],

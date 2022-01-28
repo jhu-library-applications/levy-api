@@ -2,7 +2,6 @@ import requests
 import secrets
 import json
 import time
-from datetime import datetime
 import pandas as pd
 import os
 
@@ -11,8 +10,7 @@ password = secrets.password
 
 # Your Drupal baseURL: https://example.com/
 baseURL = 'https://levy-test.mse.jhu.edu/'
-file = 'jsonapi/paragraph/collection_item_image/field_item_image'
-type = 'jsonapi/paragraph/collection_item_image'
+image_type = 'jsonapi/paragraph/collection_item_image'
 
 startTime = time.time()
 
@@ -31,32 +29,30 @@ status = s.get(baseURL+'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 
-# Open file CSV as DataFrame
-filename = 'filenames.csv'
-df = pd.read_csv(filename)
 
-allItems = []
-for index, row in df.iterrows():
-    row = row
-    filename = row['filename']
-    fileIdentifier = row['fileIdentifier']
+def postFile(file, endpoint, file_type):
     # Create Content-Disposition value using filename
-    cd_value = 'file; filename="{}"'.format(filename)
+    cd_value = 'file; filename="{}"'.format(file)
 
     # Read file as binary
-    data = open(filename, 'rb')
+    data = open(file, 'rb')
 
     # Update headers for posting file to Drupal, updated for each file
     s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                       'application/octet-stream',
                       'Content-Disposition': cd_value, 'X-CSRF-Token': token})
     # Post file
-    post = s.post(baseURL+file, data=data, cookies=s.cookies).json()
+    post = s.post(baseURL+endpoint, data=data, cookies=s.cookies).json()
     print(post)
     file_id = post['data']['id']
-    row['file_id'] = file_id
+    row['postType'] = 'file'
+    row[file_type] = file_id
+    allItems.append(row)
+    return file_id
 
-    # Create JSON for collection_item_image
+
+# Create JSON for collection_item_image
+def createCollectionItemImage(file_id):
     attributes = {}
     attributes['parent_type'] = 'node'
     attributes['parent_field_name'] = 'field_images'
@@ -74,24 +70,67 @@ for index, row in df.iterrows():
     data = {'data': {'type': 'paragraph--collection_item_image',
             'attributes': attributes, 'relationships': relationships}}
     metadata = json.dumps(data)
+    return metadata
 
-    # Post collection_item_image to Drupal
+
+def postCollectionItemImage(metadata):
     s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                       'application/vnd.api+json', 'X-CSRF-Token': token})
-    post = s.post(baseURL+type, data=metadata, cookies=s.cookies).json()
+    post = s.post(baseURL+image_type, data=metadata, cookies=s.cookies).json()
     data = post.get('data')
     image_id = data.get('id')
     revision_id = data['attributes']['drupal_internal__revision_id']
+    row['postType'] = 'collection_item_image'
     row['image_id'] = image_id
     row['revision_id'] = revision_id
     allItems.append(row)
 
+
+# Open file CSV as DataFrame
+filename = 'filenames.csv'
+df = pd.read_csv(filename)
+
+allItems = []
+for index, row in df.iterrows():
+    row = row
+    fileIdentifier = row['fileIdentifier']
+    image = row.get('image')
+    image_directory = row.get('image_directory')
+    images = image.split('|')
+    copyright = row.get('copyright')
+    if copyright == 'noCopyright':
+        pdf = row.get('pdf')
+        pdf_directory = row.get('pdf_directory')
+        file = os.path.join(pdf_directory, pdf)
+        file_type = 'pdf_id'
+        endpoint = 'jsonapi/node/levy_collection_item/field_pdf'
+        file_id = postFile(file, endpoint, file_type)
+        print(file_id)
+        for image in images:
+            file = os.path.join(image_directory, image)
+            file_type = 'file_id'
+            endpoint = 'jsonapi/paragraph/collection_item_image/field_item_image'
+            file_id = postFile(file, endpoint, file_type)
+            print(file_id)
+            metadata = createCollectionItemImage(file_id)
+            postCollectionItemImage(metadata)
+    else:
+        for image in images:
+            file = os.path.join(image_directory, image)
+            file_type = 'file_id'
+            endpoint = 'jsonapi/paragraph/collection_item_image/field_item_image'
+            file_id = postFile(file, endpoint, file_type)
+            print(file_id)
+            metadata = createCollectionItemImage(file_id)
+            postCollectionItemImage(metadata)
+
+
 # Convert results to DataFrame, export as CSV
 log = pd.DataFrame.from_dict(allItems)
-dt = datetime.now().strftime('%Y-%m-%d')
-newFile = 'logOfParagraphCollectionItemImages_'+dt+'.csv'
+newFile = 'logOfImagesAndPDFs.csv'
 fullname = os.path.join(directory, newFile)
 log.to_csv(fullname)
+
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

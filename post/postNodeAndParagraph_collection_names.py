@@ -3,6 +3,7 @@ import secrets
 import json
 import pandas as pd
 import time
+from datetime import datetime
 import os
 
 username = secrets.username
@@ -10,7 +11,6 @@ password = secrets.password
 
 # Your Drupal baseURL: https://example.com/
 baseURL = 'https://levy-test.mse.jhu.edu/'
-type = 'jsonapi/paragraph/collection_name/'
 
 startTime = time.time()
 
@@ -33,13 +33,76 @@ if status == 1:
 s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                   'application/vnd.api+json', 'X-CSRF-Token': token})
 
-
-# Open file CSV as DataFrame
-filename = 'paragraph_collection_namesToAdd.csv'
+# Open levy_collection_names CSV as DataFrame
+filename = 'levy_collection_namesToCreate.csv'
 df = pd.read_csv(filename)
 
-allItems = []
+# Loop through DataFrame and create JSON for each row
+all_items = []
 for index, row in df.iterrows():
+    print(index)
+    tax_item = {}
+    tax_dict = {}
+    full_type = 'node--levy_collection_names'
+    title = row['title']
+    tax_dict['type'] = full_type
+    tax_dict['attributes'] = {'title': title, 'status': True}
+    tax_item['data'] = tax_dict
+    metadata = json.dumps(tax_item)
+
+# Post levy_collection_name JSON to Drupal site and save results in dictonary
+    type = 'jsonapi/node/levy_collection_names/'
+    post = s.post(baseURL+type, data=metadata, cookies=s.cookies).json()
+    data = post.get('data')
+    id = data.get('id')
+    title = data['attributes']['title']
+    link = data['links']['self']['href']
+    results = {}
+    results['title'] = title
+    results['id'] = id
+    results['link'] = link
+    print(results)
+    print('')
+    all_items.append(results)
+
+# Convert results to DataFrame, export as CSV
+log = pd.DataFrame.from_dict(all_items)
+dt = datetime.now().strftime('%Y-%m-%d')
+newFile = 'logOfNodeCollectionNamesAdded_'+dt+'.csv'
+fullname = os.path.join(directory, newFile)
+log.to_csv(fullname, index=False)
+
+# Create Paragraph collection_name spreadsheet
+filename1 = 'matched_CollectionNames.csv'
+filename2 = fullname
+
+df_1 = pd.read_csv(filename1, header=0)
+print(df_1.columns)
+df_2 = pd.read_csv(filename2, header=0)
+print(df_2.columns)
+
+df_1.set_index('title', inplace=True)
+df_2.set_index('title', inplace=True)
+
+frame = df_1.combine_first(df_2)
+frame.reset_index(inplace=True)
+frame.rename(columns={'id': 'levy_collection_names_id'}, inplace=True)
+frame.drop(['count', 'role', 'taxonomy', 'title', 'link'], axis=1, inplace=True)
+
+frame['fileIdentifier'] = frame['fileIdentifier'].str.split('|')
+frame.reset_index()
+frame = frame.explode('fileIdentifier')
+frame.sort_values(by=['fileIdentifier'], inplace=True)
+frame.to_csv('paragraph_collection_namesToAdd.csv', index=False)
+
+# Post Paragraph collection_name
+
+filename3 = 'paragraph_collection_namesToAdd.csv'
+endpoint = 'jsonapi/paragraph/collection_name/'
+df_3 = pd.read_csv(filename3)
+
+allItems = []
+for index, row in df_3.iterrows():
     row = row
     creator_role = row['creator_role_id']
     names_id = row['levy_collection_names_id']
@@ -57,7 +120,7 @@ for index, row in df.iterrows():
     data = {'data': {'type': 'paragraph--collection_name',
             'attributes': attributes, 'relationships': relationships}}
     metadata = json.dumps(data)
-    post = s.post(baseURL+type, data=metadata, cookies=s.cookies).json()
+    post = s.post(baseURL+endpoint, data=metadata, cookies=s.cookies).json()
     data = post.get('data')
     if data:
         id = data.get('id')
