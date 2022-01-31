@@ -2,17 +2,20 @@ import pandas as pd
 from datetime import datetime
 import os
 
-termsDone = '/Users/michelle/Documents/GitHub/levy-api/termsDone'
+
+path = os.getcwd()
+dir = os.path.dirname(path)
+termsDone = os.path.join(dir, 'termsDone/')
 if not os.path.exists(termsDone):
     os.mkdir(termsDone)
-
-termsToCreate = '/Users/michelle/Documents/GitHub/levy-api/termsToCreate'
+termsToCreate = os.path.join(dir, 'termsToCreate/')
 if not os.path.exists(termsToCreate):
     os.mkdir(termsToCreate)
 
-aggregatedRoles = '/Users/michelle/Documents/GitHub/levy-api/aggregated-roles/'
+
+aggregatedRoles = os.path.join(dir, 'aggregated-roles')
 typeSheet = 'allCollectionNames.csv'
-rolesSheet = '/Users/michelle/Documents/GitHub/levy-api/existing-taxonomies/creator_r.csv'
+rolesSheet = os.path.join(dir, 'existing-taxonomies/creator_r.csv')
 
 rolesList = ['AggregatedByarranger.csv', 'AggregatedBycomposer.csv',
              'AggregatedBylyricist.csv', 'AggregatedByno_role.csv',

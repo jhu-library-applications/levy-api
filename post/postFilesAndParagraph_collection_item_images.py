@@ -14,7 +14,9 @@ image_type = 'jsonapi/paragraph/collection_item_image'
 
 startTime = time.time()
 
-directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
+path = os.getcwd()
+dir = os.path.dirname(path)
+directory = os.path.join(dir, 'logs')
 if not os.path.exists(directory):
     os.mkdir(directory)
 

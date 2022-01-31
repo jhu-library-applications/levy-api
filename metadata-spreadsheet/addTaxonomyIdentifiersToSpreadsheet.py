@@ -1,7 +1,11 @@
 import pandas as pd
 import os
 
-directory = '/Users/michelle/Documents/GitHub/levy-api/items-matched/'
+
+path = os.getcwd()
+dir = os.path.dirname(path)
+directory = os.path.join(dir, 'items-matched/')
+
 filename2 = 'logOfTaxonomyTermsAdded.csv'
 df_2 = pd.read_csv(filename2, header=0)
 pivoted = pd.pivot(df_2, index='fileIdentifier', columns='type', values='id')

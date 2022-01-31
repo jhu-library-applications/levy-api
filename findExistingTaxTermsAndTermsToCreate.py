@@ -7,7 +7,7 @@ dir = os.path.dirname(path)
 aggregated = os.path.join(dir, 'aggregated-taxonomies/')
 taxonomies = os.path.join(dir, 'existing-taxonomies/')
 
-directory = os.path.join(dir,'items-matched/')
+directory = os.path.join(dir, 'items-matched/')
 if not os.path.exists(directory):
     os.mkdir(directory)
 

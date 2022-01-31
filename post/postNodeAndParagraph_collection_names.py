@@ -14,8 +14,10 @@ baseURL = 'https://levy-test.mse.jhu.edu/'
 
 startTime = time.time()
 
-termsToCreate = '/Users/michelle/Documents/GitHub/levy-api/termsToCreate'
-directory = '/Users/michelle/Documents/GitHub/levy-api/logs'
+path = os.getcwd()
+dir = os.path.dirname(path)
+termsToCreate = os.path.join(dir, 'termsToCreate')
+directory = os.path.join(dir, 'logs')
 if not os.path.exists(directory):
     os.mkdir(directory)
 
