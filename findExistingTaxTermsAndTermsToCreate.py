@@ -2,18 +2,20 @@ import pandas as pd
 from datetime import datetime
 import os
 
-aggregated = '/Users/michelle/Documents/GitHub/levy-api/aggregated-taxonomies/'
-taxonomies = '/Users/michelle/Documents/GitHub/levy-api/existing-taxonomies/'
+path = os.getcwd()
+dir = os.path.dirname(path)
+aggregated = os.path.join(dir, 'aggregated-taxonomies/')
+taxonomies = os.path.join(dir, 'existing-taxonomies/')
 
-directory = '/Users/michelle/Documents/GitHub/levy-api/items-matched/'
+directory = os.path.join(dir,'items-matched/')
 if not os.path.exists(directory):
     os.mkdir(directory)
 
-termsDone = '/Users/michelle/Documents/GitHub/levy-api/termsDone'
+termsDone = os.path.join(dir, 'termsDone/')
 if not os.path.exists(termsDone):
     os.mkdir(termsDone)
 
-termsToCreate = '/Users/michelle/Documents/GitHub/levy-api/termsToCreate'
+termsToCreate = os.path.join(dir, 'termsToCreate/')
 if not os.path.exists(termsToCreate):
     os.mkdir(termsToCreate)
 
