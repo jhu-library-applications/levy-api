@@ -3,19 +3,18 @@ from datetime import datetime
 import os
 
 path = os.getcwd()
-dir = os.path.dirname(path)
-aggregated = os.path.join(dir, 'aggregated-taxonomies/')
-taxonomies = os.path.join(dir, 'existing-taxonomies/')
+aggregated = os.path.join(path, 'aggregated-taxonomies/')
+taxonomies = os.path.join(path, 'existing-taxonomies/')
 
-directory = os.path.join(dir, 'items-matched/')
+directory = os.path.join(path, 'items-matched/')
 if not os.path.exists(directory):
     os.mkdir(directory)
 
-termsDone = os.path.join(dir, 'termsDone/')
+termsDone = os.path.join(path, 'termsDone/')
 if not os.path.exists(termsDone):
     os.mkdir(termsDone)
 
-termsToCreate = os.path.join(dir, 'termsToCreate/')
+termsToCreate = os.path.join(path, 'termsToCreate/')
 if not os.path.exists(termsToCreate):
     os.mkdir(termsToCreate)
 

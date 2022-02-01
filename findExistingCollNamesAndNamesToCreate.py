@@ -4,18 +4,17 @@ import os
 
 
 path = os.getcwd()
-dir = os.path.dirname(path)
-termsDone = os.path.join(dir, 'termsDone/')
+termsDone = os.path.join(path, 'termsDone/')
 if not os.path.exists(termsDone):
     os.mkdir(termsDone)
-termsToCreate = os.path.join(dir, 'termsToCreate/')
+termsToCreate = os.path.join(path, 'termsToCreate/')
 if not os.path.exists(termsToCreate):
     os.mkdir(termsToCreate)
 
 
-aggregatedRoles = os.path.join(dir, 'aggregated-roles')
+aggregatedRoles = os.path.join(path, 'aggregated-roles')
 typeSheet = 'allCollectionNames.csv'
-rolesSheet = os.path.join(dir, 'existing-taxonomies/creator_r.csv')
+rolesSheet = os.path.join(path, 'existing-taxonomies/creator_r.csv')
 
 rolesList = ['AggregatedByarranger.csv', 'AggregatedBycomposer.csv',
              'AggregatedBylyricist.csv', 'AggregatedByno_role.csv',

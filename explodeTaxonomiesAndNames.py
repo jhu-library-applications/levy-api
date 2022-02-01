@@ -12,12 +12,11 @@ else:
     filename = input('Enter filename (including \'.csv\'): ')
 
 path = os.getcwd()
-directory = os.path.dirname(path)
-tax_dir = os.path.join(directory, 'aggregated-taxonomies/')
+tax_dir = os.path.join(path, 'aggregated-taxonomies/')
 if not os.path.exists(tax_dir):
     os.mkdir(tax_dir)
 
-roles_dir = os.path.join(directory, 'aggregated-roles/')
+roles_dir = os.path.join(path, 'aggregated-roles/')
 if not os.path.exists(roles_dir):
     os.mkdir(roles_dir)
 
