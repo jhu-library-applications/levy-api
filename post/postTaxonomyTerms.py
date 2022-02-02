@@ -72,8 +72,7 @@ for index, row in df.iterrows():
 
 # Convert results to DataFrame, export as CSV
 log = pd.DataFrame.from_dict(all_items)
-dt = datetime.now().strftime('%Y-%m-%d')
-newFile = 'logOfTaxonomyTermsAdded_'+dt+'.csv'
+newFile = 'logOfTaxonomyTermsAdded.csv'
 fullname = os.path.join(directory, newFile)
 log.to_csv(fullname, index=False)
 

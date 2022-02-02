@@ -6,17 +6,19 @@ path = os.getcwd()
 dir = os.path.dirname(path)
 directory = os.path.join(dir, 'items-matched/')
 
-filename2 = 'logOfTaxonomyTermsAdded.csv'
+tax = os.path.join(dir, 'logs/')
+filename2 = os.path.join(tax, 'logOfTaxonomyTermsAdded.csv')
 df_2 = pd.read_csv(filename2, header=0)
 pivoted = pd.pivot(df_2, index='fileIdentifier', columns='type', values='id')
 df_2 = pd.DataFrame(pivoted)
 df_2 = df_2.reset_index()
 
-filename3 = 'GottesmanFinalMetadata_2021-12-03.csv'
+filename3 = 'GottesmanFinalMetadata_test.csv'
 new_items = pd.read_csv(filename3)
 
 newDF = pd.DataFrame()
 for count, filename in enumerate(os.listdir(directory)):
+    print(count)
     filename = directory + "/" + filename
     if filename.endswith('.csv'):
         df = pd.read_csv(filename)
@@ -33,7 +35,7 @@ for count, filename in enumerate(os.listdir(directory)):
         df = df.reset_index()
         new_filename = 'completed_'+field+'.csv'
         df.to_csv(new_filename, index=False)
-        if count == 1:
+        if count == 0:
             newDF = newDF.append(df, ignore_index=True, sort=True)
         else:
             newDF = pd.merge(newDF, df, how='outer', on=['fileIdentifier'])

@@ -22,6 +22,9 @@ matchDictionary = {'AggregatedByfield_publisher.csv': 'publishers.csv',
                    'AggregatedByfield_subjects.csv': 'subjects.csv',
                    'AggregatedByfield_instrumentation_metadata.csv':
                    'instrumentation_metadata.csv'}
+matchFieldsAndTax = {'field_publisher': 'publishers',
+                      'field_subjects': 'subjects',
+                      'field_instrumentation_metadata': 'instrumentation_metadata'}
 
 for key, value in matchDictionary.items():
     df_1 = pd.read_csv(aggregated+key, header=0)
@@ -52,7 +55,8 @@ for count, row in newDF.iterrows():
     id = row['id']
     taxonomy = row['type']
     if pd.isna(id):
-        row['taxonomy'] = taxonomy.replace('field_', '')
+        taxonomyValue = matchFieldsAndTax.get(taxonomy)
+        row['taxonomy'] = taxonomyValue
         del row['id']
         toCreate.append(row)
     else:
