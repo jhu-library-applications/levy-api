@@ -44,11 +44,16 @@ def postFile(file, endpoint, file_type):
                       'application/octet-stream',
                       'Content-Disposition': cd_value, 'X-CSRF-Token': token})
     # Post file
-    post = s.post(baseURL+endpoint, data=data, cookies=s.cookies).json()
-    print(post)
-    file_id = post['data']['id']
-    row['postType'] = 'file'
-    row[file_type] = file_id
+    try:
+        post = s.post(baseURL+endpoint, data=data, cookies=s.cookies)
+        print(post)
+        file_id = post['data']['id']
+        row['postType'] = 'file'
+        row[file_type] = file_id
+    except json.decoder.JSONDecodeError:
+        row['postType'] = 'file'
+        row[file_type] = 'UPLOAD FAILED'
+        file_id = False
     allItems.append(row)
     return file_id
 
@@ -78,22 +83,28 @@ def createCollectionItemImage(file_id):
 def postCollectionItemImage(metadata):
     s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                       'application/vnd.api+json', 'X-CSRF-Token': token})
-    post = s.post(baseURL+image_type, data=metadata, cookies=s.cookies).json()
-    data = post.get('data')
-    image_id = data.get('id')
-    revision_id = data['attributes']['drupal_internal__revision_id']
-    row['postType'] = 'collection_item_image'
-    row['image_id'] = image_id
-    row['revision_id'] = revision_id
+    try:
+        post = s.post(baseURL+image_type, data=metadata, cookies=s.cookies).json()
+        data = post.get('data')
+        image_id = data.get('id')
+        revision_id = data['attributes']['drupal_internal__revision_id']
+        row['postType'] = 'collection_item_image'
+        row['image_id'] = image_id
+        row['revision_id'] = revision_id
+    except json.decoder.JSONDecodeError:
+        row['postType'] = 'collection_item_image'
+        row['image_id'] = 'UPLOAD FAILED'
+        row['revision_id'] = 'UPLOAD FAILED'
     allItems.append(row)
 
 
 # Open file CSV as DataFrame
-filename = 'filenames.csv'
+filename = 'allFiles_test1.csv'
 df = pd.read_csv(filename)
 
 allItems = []
 for index, row in df.iterrows():
+    print('Posting files for item {}'.format(index))
     row = row
     fileIdentifier = row['fileIdentifier']
     image = row.get('image')
@@ -114,8 +125,9 @@ for index, row in df.iterrows():
             endpoint = 'jsonapi/paragraph/collection_item_image/field_item_image'
             file_id = postFile(file, endpoint, file_type)
             print(file_id)
-            metadata = createCollectionItemImage(file_id)
-            postCollectionItemImage(metadata)
+            if file_id:
+                metadata = createCollectionItemImage(file_id)
+                postCollectionItemImage(metadata)
     else:
         for image in images:
             file = os.path.join(image_directory, image)
@@ -123,8 +135,9 @@ for index, row in df.iterrows():
             endpoint = 'jsonapi/paragraph/collection_item_image/field_item_image'
             file_id = postFile(file, endpoint, file_type)
             print(file_id)
-            metadata = createCollectionItemImage(file_id)
-            postCollectionItemImage(metadata)
+            if file_id:
+                metadata = createCollectionItemImage(file_id)
+                postCollectionItemImage(metadata)
 
 
 # Convert results to DataFrame, export as CSV

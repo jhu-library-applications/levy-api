@@ -77,7 +77,7 @@ fullname = os.path.join(directory, newFile)
 log.to_csv(fullname, index=False)
 
 # Create Paragraph collection_name spreadsheet
-filename1 = 'matched_CollectionNames.csv'
+filename1 = os.path.join(dir, 'matched_CollectionNames.csv')
 filename2 = fullname
 
 df_1 = pd.read_csv(filename1, header=0)
