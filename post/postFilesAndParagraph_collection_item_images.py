@@ -32,10 +32,10 @@ if status == 1:
     print('authenticated')
 
 
-def postFile(file, endpoint, file_type):
+def postFile(file, endpoint, file_type, fileIdentifier):
     # Create Content-Disposition value using filename
     cd_value = 'file; filename="{}"'.format(file)
-
+    fileLog = {'filename': file, 'fileIdentifier': fileIdentifier}
     # Read file as binary
     data = open(file, 'rb')
 
@@ -45,16 +45,15 @@ def postFile(file, endpoint, file_type):
                       'Content-Disposition': cd_value, 'X-CSRF-Token': token})
     # Post file
     try:
-        post = s.post(baseURL+endpoint, data=data, cookies=s.cookies)
-        print(post)
+        post = s.post(baseURL+endpoint, data=data, cookies=s.cookies).json()
         file_id = post['data']['id']
-        row['postType'] = 'file'
-        row[file_type] = file_id
+        fileLog['postType'] = 'file'
+        fileLog[file_type] = file_id
     except json.decoder.JSONDecodeError:
-        row['postType'] = 'file'
-        row[file_type] = 'UPLOAD FAILED'
+        fileLog['postType'] = 'file'
+        fileLog[file_type] = 'UPLOAD FAILED'
         file_id = False
-    allItems.append(row)
+    allItems.append(fileLog)
     return file_id
 
 
@@ -80,7 +79,8 @@ def createCollectionItemImage(file_id):
     return metadata
 
 
-def postCollectionItemImage(metadata):
+def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
+    fileLog = {'fileIdentifier': fileIdentifier, 'file_id': file_id, 'filename': file}
     s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                       'application/vnd.api+json', 'X-CSRF-Token': token})
     try:
@@ -88,24 +88,23 @@ def postCollectionItemImage(metadata):
         data = post.get('data')
         image_id = data.get('id')
         revision_id = data['attributes']['drupal_internal__revision_id']
-        row['postType'] = 'collection_item_image'
-        row['image_id'] = image_id
-        row['revision_id'] = revision_id
+        fileLog['postType'] = 'collection_item_image'
+        fileLog['image_id'] = image_id
+        fileLog['revision_id'] = revision_id
     except json.decoder.JSONDecodeError:
-        row['postType'] = 'collection_item_image'
-        row['image_id'] = 'UPLOAD FAILED'
-        row['revision_id'] = 'UPLOAD FAILED'
-    allItems.append(row)
+        fileLog['postType'] = 'collection_item_image'
+        fileLog['image_id'] = 'UPLOAD FAILED'
+        fileLog['revision_id'] = 'UPLOAD FAILED'
+    allItems.append(fileLog)
 
 
 # Open file CSV as DataFrame
-filename = 'allFiles_test1.csv'
+filename = 'allFiles_test.csv'
 df = pd.read_csv(filename)
 
 allItems = []
 for index, row in df.iterrows():
     print('Posting files for item {}'.format(index))
-    row = row
     fileIdentifier = row['fileIdentifier']
     image = row.get('image')
     image_directory = row.get('image_directory')
@@ -117,27 +116,27 @@ for index, row in df.iterrows():
         file = os.path.join(pdf_directory, pdf)
         file_type = 'pdf_id'
         endpoint = 'jsonapi/node/levy_collection_item/field_pdf'
-        file_id = postFile(file, endpoint, file_type)
+        file_id = postFile(file, endpoint, file_type, fileIdentifier)
         print(file_id)
         for image in images:
             file = os.path.join(image_directory, image)
             file_type = 'file_id'
             endpoint = 'jsonapi/paragraph/collection_item_image/field_item_image'
-            file_id = postFile(file, endpoint, file_type)
+            file_id = postFile(file, endpoint, file_type, fileIdentifier)
             print(file_id)
             if file_id:
                 metadata = createCollectionItemImage(file_id)
-                postCollectionItemImage(metadata)
+                postCollectionItemImage(metadata, fileIdentifier, file_id, file)
     else:
         for image in images:
             file = os.path.join(image_directory, image)
             file_type = 'file_id'
             endpoint = 'jsonapi/paragraph/collection_item_image/field_item_image'
-            file_id = postFile(file, endpoint, file_type)
+            file_id = postFile(file, endpoint, file_type, fileIdentifier)
             print(file_id)
             if file_id:
                 metadata = createCollectionItemImage(file_id)
-                postCollectionItemImage(metadata)
+                postCollectionItemImage(metadata, fileIdentifier, file_id, file)
 
 
 # Convert results to DataFrame, export as CSV
