@@ -5,15 +5,25 @@ import time
 import pandas as pd
 import os
 
+secretsVersion = input('To edit production server, enter secrets file: ')
+if secretsVersion != '':
+    try:
+        secrets = __import__(secretsVersion)
+        print('Editing Production')
+    except ImportError:
+        print('Editing Stage')
+else:
+    print('Editing Stage')
+
+baseURL = secrets.baseURL
 username = secrets.username
 password = secrets.password
 
-# Your Drupal baseURL: https://example.com/
-baseURL = 'https://levy-test.mse.jhu.edu/'
 image_type = 'jsonapi/paragraph/collection_item_image'
 
 startTime = time.time()
 
+# Finds directory levy-api/logs
 path = os.getcwd()
 dir = os.path.dirname(path)
 directory = os.path.join(dir, 'logs')
@@ -33,17 +43,20 @@ if status == 1:
 
 
 def postFile(file, endpoint, file_type, fileIdentifier):
-    # Create Content-Disposition value using filename
-    cd_value = 'file; filename="{}"'.format(file)
+    # Create log for posting file.
     fileLog = {'filename': file, 'fileIdentifier': fileIdentifier}
-    # Read file as binary
+
+    # Create Content-Disposition value using filename for header.
+    cd_value = 'file; filename="{}"'.format(file)
+
+    # Read file as binary.
     data = open(file, 'rb')
 
-    # Update headers for posting file to Drupal, updated for each file
+    # Update headers for posting file to Drupal, updated for each file.
     s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                       'application/octet-stream',
                       'Content-Disposition': cd_value, 'X-CSRF-Token': token})
-    # Post file
+    # Post file.
     try:
         post = s.post(baseURL+endpoint, data=data, cookies=s.cookies).json()
         file_id = post['data']['id']
@@ -57,7 +70,7 @@ def postFile(file, endpoint, file_type, fileIdentifier):
     return file_id
 
 
-# Create JSON for collection_item_image
+# Create JSON for collection_item_image.
 def createCollectionItemImage(file_id):
     attributes = {}
     attributes['parent_type'] = 'node'
@@ -80,14 +93,23 @@ def createCollectionItemImage(file_id):
 
 
 def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
-    fileLog = {'fileIdentifier': fileIdentifier, 'file_id': file_id, 'filename': file}
+    # Creates log for posting paragraph collection_item_image.
+    fileLog = {'fileIdentifier': fileIdentifier, 'file_id': file_id,
+               'filename': file}
+
+    # Updates header for posting paragraph.
     s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
                       'application/vnd.api+json', 'X-CSRF-Token': token})
+
+    # Try to post new paragraph collection_item_image.
     try:
         post = s.post(baseURL+image_type, data=metadata, cookies=s.cookies).json()
+        # Gets paragraph data for log
         data = post.get('data')
         image_id = data.get('id')
         revision_id = data['attributes']['drupal_internal__revision_id']
+
+        # Records data for log.
         fileLog['postType'] = 'collection_item_image'
         fileLog['image_id'] = image_id
         fileLog['revision_id'] = revision_id
@@ -98,7 +120,7 @@ def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
     allItems.append(fileLog)
 
 
-# Open file CSV as DataFrame
+# Open file CSV as DataFrame.
 filename = 'allFiles_test.csv'
 df = pd.read_csv(filename)
 
@@ -107,9 +129,11 @@ for index, row in df.iterrows():
     print('Posting files for item {}'.format(index))
     fileIdentifier = row['fileIdentifier']
     image = row.get('image')
-    image_directory = row.get('image_directory')
     images = image.split('|')
+    image_directory = row.get('image_directory')
     copyright = row.get('copyright')
+
+    # Only post PDF files if item has no copyright.
     if copyright == 'noCopyright':
         pdf = row.get('pdf')
         pdf_directory = row.get('pdf_directory')
@@ -144,7 +168,6 @@ log = pd.DataFrame.from_dict(allItems)
 newFile = 'logOfImagesAndPDFs.csv'
 fullname = os.path.join(directory, newFile)
 log.to_csv(fullname)
-
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

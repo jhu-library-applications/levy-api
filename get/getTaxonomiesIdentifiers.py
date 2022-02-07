@@ -10,8 +10,18 @@ print(directory)
 if not os.path.exists(directory):
     os.mkdir(directory)
 
-# Your baseURL: https://example.com+//jsonapi/taxonomy_term/
-baseURL = 'https://levy-test.mse.jhu.edu//jsonapi/taxonomy_term/'
+secretsVersion = input('To edit production server, enter secrets file: ')
+if secretsVersion != '':
+    try:
+        secrets = __import__(secretsVersion)
+        print('Editing Production')
+    except ImportError:
+        print('Editing Stage')
+else:
+    print('Editing Stage')
+
+baseURL = secrets.baseURL
+type = '/jsonapi/taxonomy_term/'
 
 # Machine names of taxonomies for your Drupal instance.
 taxonomies = ['composition_metadata', 'c', 'creator_r', 'duplicat',
@@ -38,7 +48,7 @@ for taxonomy in taxonomies:
     nextList = []
     while more_links:
         if not nextList:
-            r = requests.get(baseURL+taxonomy+'?page[limit=50]').json()
+            r = requests.get(baseURL+type+taxonomy+'?page[limit=50]').json()
         else:
             next = nextList[0]
             r = requests.get(next).json()

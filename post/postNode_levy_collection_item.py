@@ -5,11 +5,20 @@ import time
 from datetime import datetime
 import pandas as pd
 
+secretsVersion = input('To edit production server, enter secrets file: ')
+if secretsVersion != '':
+    try:
+        secrets = __import__(secretsVersion)
+        print('Editing Production')
+    except ImportError:
+        print('Editing Stage')
+else:
+    print('Editing Stage')
+
+baseURL = secrets.baseURL
 username = secrets.username
 password = secrets.password
 
-# Your Drupal baseURL: https://example.com/
-baseURL = 'https://levy-test.mse.jhu.edu/'
 type = 'jsonapi/node/levy_collection_item/'
 
 startTime = time.time()

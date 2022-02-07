@@ -2,8 +2,17 @@ import requests
 import pandas as pd
 import secrets
 
-# Your baseURL: https://example.com
-baseURL = 'https://levy-test.mse.jhu.edu/'
+secretsVersion = input('To edit production server, enter secrets file: ')
+if secretsVersion != '':
+    try:
+        secrets = __import__(secretsVersion)
+        print('Editing Production')
+    except ImportError:
+        print('Editing Stage')
+else:
+    print('Editing Stage')
+
+baseURL = secrets.baseURL
 type = 'jsonapi/paragraph/collection_item_image'
 
 username = secrets.username

@@ -1,8 +1,19 @@
 import requests
 import pandas as pd
+import secrets
 
-# Your baseURL: https://example.com+//jsonapi/node/levy_collection_item'
-baseURL = 'https://levy-test.mse.jhu.edu/'
+secretsVersion = input('To edit production server, enter secrets file: ')
+if secretsVersion != '':
+    try:
+        secrets = __import__(secretsVersion)
+        print('Editing Production')
+    except ImportError:
+        print('Editing Stage')
+else:
+    print('Editing Stage')
+
+baseURL = secrets.baseURL
+
 type = 'jsonapi/node/levy_collection_item'
 ext = '?page[limit=50]?include=field_people.field_name,field_people.field_roles,field_people.paragraph_type'
 

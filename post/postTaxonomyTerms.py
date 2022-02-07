@@ -3,14 +3,22 @@ import secrets
 import json
 import pandas as pd
 import time
-from datetime import datetime
 import os
 
+secretsVersion = input('To edit production server, enter secrets file: ')
+if secretsVersion != '':
+    try:
+        secrets = __import__(secretsVersion)
+        print('Editing Production')
+    except ImportError:
+        print('Editing Stage')
+else:
+    print('Editing Stage')
+
+baseURL = secrets.baseURL
 username = secrets.username
 password = secrets.password
 
-# Your Drupal baseURL: https://example.com/
-baseURL = 'https://levy-test.mse.jhu.edu/'
 taxonomyLink = 'jsonapi/taxonomy_term/'
 
 startTime = time.time()

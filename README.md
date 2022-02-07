@@ -16,14 +16,21 @@ Install [Paragraph Type Permissions sub-module](https://www.drupal.org/project/p
 
 ## Authentication
 
-In your /post folder, please create a `secrets.py` file that contains the following information. This information will be used in the scripts that require authentication to post to Drupal.
+In your /post and /get folders, please create a `secrets.py` and `secretsProd.py` files that contains the following information. For `secrets.py`, the baseURL should correspond to the URL of the test/stage site. For `secretsProd.py` the baseURL should correspond to the URL of the production (official) site. This information will be used in the scripts that require authentication to post to Drupal.
 
 ```python
 username='username'
 password='password'
+baseURL='https://example.com/'
 ```
 
-In order to ensure that this file is not uploaded to GitHub, add `secrets.py` to  your `.gitignore`.
+In order to ensure that these files are not uploaded to GitHub, add `secrets.py` and `secretsProd.py` to a `.gitignore` file in your /post and /get folders.
+
+```python
+# Local
+secrets.py
+secretsProd.py
+```
 
 ## Wiki
 Please see the [wiki](https://github.com/mjanowiecki/levy-api/wiki) for instructions and more information about the API.
