@@ -74,7 +74,7 @@ for index, row in df.iterrows():
     row['name'] = name
     row['id'] = id
     row['link'] = link
-    print('name')
+    print(name)
     print('')
     all_items.append(row)
 

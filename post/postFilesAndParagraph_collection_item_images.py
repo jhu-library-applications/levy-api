@@ -121,7 +121,7 @@ def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
 
 
 # Open file CSV as DataFrame.
-filename = 'allFiles_test.csv'
+filename = 'allFiles_test_01.csv'
 df = pd.read_csv(filename)
 
 allItems = []

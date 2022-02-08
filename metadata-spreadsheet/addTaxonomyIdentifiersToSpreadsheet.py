@@ -1,6 +1,15 @@
 import pandas as pd
 import os
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file')
+args = parser.parse_args()
+
+if args.file:
+    metadata_file = args.file
+else:
+    metadata_file = input('Enter filename (including \'.csv\'): ')
 
 path = os.getcwd()
 dir = os.path.dirname(path)
@@ -13,8 +22,7 @@ pivoted = pd.pivot(df_2, index='fileIdentifier', columns='type', values='id')
 df_2 = pd.DataFrame(pivoted)
 df_2 = df_2.reset_index()
 
-filename3 = 'GottesmanFinalMetadata_test.csv'
-new_items = pd.read_csv(filename3)
+new_items = pd.read_csv(metadata_file)
 
 newDF = pd.DataFrame()
 for count, filename in enumerate(os.listdir(directory)):
@@ -45,5 +53,5 @@ newDF.to_csv('allTaxonomyIdentifiersByFileIdentifiers.csv', index=False)
 
 updated = pd.merge(new_items, newDF, how='left', on=['fileIdentifier'], suffixes=('_1', '_2'))
 print(updated.head)
-filename3 = '01_'+filename3
-updated.to_csv(filename3, index=False)
+metadata_file = '01_'+metadata_file
+updated.to_csv(metadata_file, index=False)
