@@ -2,8 +2,25 @@ import requests
 import secrets
 import json
 import time
+import os
 from datetime import datetime
 import pandas as pd
+import argparse
+
+path = os.getcwd()
+dir = os.path.dirname(path)
+print(dir)
+meta = os.path.join(dir, 'metadata-spreadsheet/')
+print(meta)
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file')
+args = parser.parse_args()
+
+if args.file:
+    metadata_file = args.file
+else:
+    metadata_file = input('Enter filename (including \'.csv\'): ')
 
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
@@ -40,7 +57,10 @@ s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
 
 
 def createAttribute(field, value):
-    value = row[value].strip()
+    try:
+        value = row[value].strip()
+    except AttributeError:
+        value = row[value]
     if value != '':
         attributes[field] = value
     else:
@@ -49,12 +69,15 @@ def createAttribute(field, value):
 
 def createRelation(field, type, value):
     multipleData = []
-    value = row[value].strip()
+    try:
+        value = row[value].strip()
+    except AttributeError:
+        value = row[value]
     if value != '':
         if '|' in value:
             values = value.split('|')
             for v in values:
-                entry = {'type': type, 'id': value}
+                entry = {'type': type, 'id': v}
                 multipleData.append(entry)
             relationships[field] = {'data': multipleData}
         else:
@@ -65,8 +88,8 @@ def createRelation(field, type, value):
 
 
 # Open file CSV as DataFrame
-filename = 'filenames.csv'
-df = pd.read_csv(filename)
+metadata_file = os.path.join(meta, metadata_file)
+df = pd.read_csv(metadata_file)
 index = df.index
 total = len(index)
 
@@ -77,8 +100,8 @@ for i, row in df.iterrows():
     logDict = {}
     attributes = {}
     relationships = {}
-    paragraph_ids = row['paragraph_ids']
-    item_image_ids = row['item_image_ids']
+    paragraph_ids = row['paragraph_id']
+    item_image_ids = row['image_id']
     fileIdentifier = row['fileIdentifier']
     logDict['fileIdentifier'] = fileIdentifier
     statement = 'Item {}, number {} of {}'.format(fileIdentifier, i+1, total)
@@ -88,12 +111,12 @@ for i, row in df.iterrows():
     attributes['status'] = True
     createAttribute('title', 'title')
     createAttribute('field_advertisement', 'field_advertisement')
-    createAttribute('field_artist', 'field_artist')
+    # createAttribute('field_artist', 'field_artist')
     createAttribute('field_box', 'field_box')
     createAttribute('field_dedicatee', 'field_dedicatee')
     createAttribute('field_first_line', 'field_first_line')
     createAttribute('field_first_line_of_chorus', 'field_first_line_of_chorus')
-    createAttribute('field_form_of_composition', 'field_form_of_composition')
+    # createAttribute('field_form_of_composition', 'field_form_of_composition')
     createAttribute('field_full_title', 'field_full_title')
     createAttribute('field_instrumentation', 'field_instrumentation')
     createAttribute('field_item_author', 'field_item_author')
@@ -104,12 +127,12 @@ for i, row in df.iterrows():
     relationships['node_type'] = {'data': {'type': 'node_type--node_type', 'id': '6e078db8-0496-441e-b636-e85d6855ec6a'}}
     createRelation('field_instrumentation_metadata',
                    'taxonomy_term--instrumentation_metadata',
-                   'field_instrumentation_metadata')
+                   'field_instrumentation_metadata_id')
     createRelation('field_publisher', 'taxonomy_term--publishers',
-                   'field_publisher')
+                   'field_publisher_id')
     createRelation('field_subjects', 'taxonomy_term--subjects',
-                   'field_subjects')
-    createRelation('field_pdf', 'file--file', 'field_pdf')
+                   'field_subjects_id')
+    createRelation('field_pdf', 'file--file', 'pdf_id')
     metadata = {'data': {'type': 'node--levy_collection_item', 'attributes':
                 attributes, 'relationships': relationships}}
     metadata = json.dumps(metadata)
@@ -143,7 +166,7 @@ for i, row in df.iterrows():
         revisionID = attributes["drupal_internal__revision_id"]
         metadata = json.dumps(para)
         post = s.patch(para_link, data=metadata, cookies=s.cookies)
-        result = 'Paragraph {} patch results: {}.'.format(image_id, post)
+        result = 'Paragraph {} patch results: {}.'.format(paragraph_id, post)
         print('Paragraph {} of {}. {}'.format(count, total_para, result))
         patches = logDict.get('para_patches')
         if patches is None:
@@ -198,8 +221,8 @@ for i, row in df.iterrows():
     print('Item patch errors: {}'.format(errors))
     if errors is None:
         print('Successful item patch')
-        updatedPeople = patch['data']['relationships']['field_people'])
-        updatedImages = patch['data']['relationships']['field_images'])
+        updatedPeople = patch['data']['relationships']['field_people']
+        updatedImages = patch['data']['relationships']['field_images']
         logDict['itemPatch_people'] = updatedPeople
         logDict['itemPatch_images'] = updatedImages
         print('')
@@ -208,7 +231,7 @@ for i, row in df.iterrows():
 # Convert log results to DataFrame, export as CSV.
 log = pd.DataFrame.from_dict(allItems)
 dt = datetime.now().strftime('%Y-%m-%d')
-log.to_csv('logofParagraphCollectionName_'+dt+'.csv')
+log.to_csv('logofLevyCollectionItems_'+dt+'.csv')
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

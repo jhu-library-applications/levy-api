@@ -20,24 +20,8 @@ df = pd.read_csv(filename, header=0)
 
 new_items = pd.read_csv(metadata_file, header=0)
 
-df.drop(['filename', 'postType', 'file_id'], axis=1, inplace=True)
-
-allItems = []
-for index, row in df.iterrows():
-    image_dict = {}
-    image_id = row['image_id']
-    if pd.notna(image_id):
-        revision_id = row['revision_id']
-        fileIdentifier = row['fileIdentifier']
-        image_dict['field_images'] = {str(image_id): str(revision_id)}
-        image_dict['fileIdentifier'] = fileIdentifier
-    allItems.append(image_dict)
-
-df2 = pd.DataFrame.from_dict(allItems)
-print(df2.head)
-
-df.drop(['image_id', 'revision_id'], axis=1, inplace=True)
-pivoted = pd.pivot_table(df2, index=['fileIdentifier'], values=['field_images'],
+df.drop(['filename', 'postType', 'file_id', 'revision_id'], axis=1, inplace=True)
+pivoted = pd.pivot_table(df, index=['fileIdentifier'], values=['image_id'],
                          aggfunc=lambda x: '|'.join(str(v) for v in x if pd.notna(v)))
 pivoted2 = pd.pivot_table(df, index='fileIdentifier', values=['pdf_id'],
                           aggfunc=lambda x: '|'.join(str(v) for v in x if pd.notna(v)))
