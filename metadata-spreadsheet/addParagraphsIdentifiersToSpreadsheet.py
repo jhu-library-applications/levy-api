@@ -25,7 +25,7 @@ pivoted = pd.pivot_table(df, index=['fileIdentifier'], values=['paragraph_id'],
                          aggfunc=lambda x: '|'.join(str(v) for v in x if pd.notna(v)))
 df = pd.DataFrame(pivoted)
 df = df.reset_index()
-
+print(df.head)
 
 updated = pd.merge(new_items, df, how='left', on=['fileIdentifier'], suffixes=('_1', '_2'))
 print(updated.head)
