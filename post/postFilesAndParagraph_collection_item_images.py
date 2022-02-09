@@ -121,7 +121,7 @@ def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
 
 
 # Open file CSV as DataFrame.
-filename = 'allFiles_test_01.csv'
+filename = 'allFiles_test_02.csv'
 df = pd.read_csv(filename)
 
 allItems = []
@@ -167,7 +167,7 @@ for index, row in df.iterrows():
 log = pd.DataFrame.from_dict(allItems)
 newFile = 'logOfImagesAndPDFs.csv'
 fullname = os.path.join(directory, newFile)
-log.to_csv(fullname)
+log.to_csv(fullname, index=False)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)
