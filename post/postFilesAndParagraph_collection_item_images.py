@@ -1,6 +1,7 @@
 import requests
 import secrets
 import json
+import simplejson
 import time
 import pandas as pd
 import os
@@ -62,7 +63,7 @@ def postFile(file, endpoint, file_type, fileIdentifier):
         file_id = post['data']['id']
         fileLog['postType'] = 'file'
         fileLog[file_type] = file_id
-    except json.decoder.JSONDecodeError:
+    except simplejson.errors.JSONDecodeError:
         fileLog['postType'] = 'file'
         fileLog[file_type] = 'UPLOAD FAILED'
         file_id = False
