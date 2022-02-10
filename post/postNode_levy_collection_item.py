@@ -73,7 +73,7 @@ def createRelation(field, type, value):
         value = row[value].strip()
     except AttributeError:
         value = row[value]
-    if value != '':
+    if pd.notna(value):
         if '|' in value:
             values = value.split('|')
             for v in values:
@@ -139,7 +139,10 @@ for i, row in df.iterrows():
     # Post levy_collection_item and get data.
     post = s.post(baseURL+type, data=metadata, cookies=s.cookies).json()
     errors = post.get('errors')
-    print('Item post errors: {}'.format(errors))
+    if errors:
+        for error in errors:
+            error = error['detail']
+            print('Item patch errors: {}'.format(error))
     rdata = post.get('data')
     id = rdata.get('id')
     nid = rdata['attributes']['drupal_internal__nid']
@@ -165,9 +168,15 @@ for i, row in df.iterrows():
         attributes['parent_id'] = nid
         revisionID = attributes["drupal_internal__revision_id"]
         metadata = json.dumps(para)
-        post = s.patch(para_link, data=metadata, cookies=s.cookies)
-        result = 'Paragraph {} patch results: {}.'.format(paragraph_id, post)
+        post = s.patch(para_link, data=metadata, cookies=s.cookies).json()
+        drupal_internal__id = post['data']['attributes']['drupal_internal__id']
+        result = 'Paragraph {} patch results: {}.'.format(paragraph_id, drupal_internal__id)
         print('Paragraph {} of {}. {}'.format(count, total_para, result))
+        errors = post.get('errors')
+        if errors:
+            for error in errors:
+                error = error['detail']
+                print('Item post errors: {}'.format(error))
         patches = logDict.get('para_patches')
         if patches is None:
             logDict['para_patches'] = result
@@ -194,8 +203,15 @@ for i, row in df.iterrows():
         attributes['parent_id'] = nid
         revisionID = attributes["drupal_internal__revision_id"]
         metadata = json.dumps(image)
-        post = s.patch(image_link, data=metadata, cookies=s.cookies)
-        result = 'Image {} patch results: {}'.format(image_id, post)
+        post = s.patch(image_link, data=metadata, cookies=s.cookies).json()
+        drupal_internal__id = post['data']['attributes']['drupal_internal__id']
+        errors = post.get('errors')
+        if errors is None:
+            result = 'Collection item image {} patch results: {}.'.format(image_id, drupal_internal__id)
+        else:
+            for error in errors:
+                error = error['detail']
+                print('Item post errors: {}'.format(error))
         print('Image {} of {}. {}'.format(count, total_images, result))
         patches = logDict.get('image_patches')
         if patches is None:
@@ -207,7 +223,7 @@ for i, row in df.iterrows():
                    "id": image_id,
                    "meta": {"target_revision_id": revisionID}}
         image_data.append(i_field)
-    field_images = {'data': people_data}
+    field_images = {'data': image_data}
 
     # Update field_people and field_images in levy_collection_item
     # with information from paragraphs.
@@ -218,7 +234,6 @@ for i, row in df.iterrows():
     metadata = json.dumps(metadata)
     patch = s.patch(baseURL+type+id, data=metadata, cookies=s.cookies).json()
     errors = patch.get('errors')
-    print('Item patch errors: {}'.format(errors))
     if errors is None:
         print('Successful item patch')
         updatedPeople = patch['data']['relationships']['field_people']
@@ -226,6 +241,10 @@ for i, row in df.iterrows():
         logDict['itemPatch_people'] = updatedPeople
         logDict['itemPatch_images'] = updatedImages
         print('')
+    else:
+        for error in errors:
+            error = error['detail']
+            print('Item patch errors: {}'.format(error))
     allItems.append(logDict)
 
 # Convert log results to DataFrame, export as CSV.
