@@ -1,0 +1,85 @@
+{
+  "jsonapi": {
+    "version": "1.0",
+    "meta": {
+      "links": {
+        "self": {
+          "href": "http://jsonapi.org/format/1.0/"
+        }
+      }
+    }
+  },
+  "data": {
+    "type": "paragraph--collection_name",
+    "id": "ea472fe2-b9f8-4159-9e41-029ab9e220e9",
+    "links": {
+      "self": {
+        "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9"
+      }
+    },
+    "attributes": {
+      "drupal_internal__id": 28000,
+      "drupal_internal__revision_id": 28000,
+      "langcode": "en",
+      "status": true,
+      "created": 1502408093,
+      "parent_id": "54192",
+      "parent_type": "node",
+      "parent_field_name": "field_people",
+      "behavior_settings": [],
+      "default_langcode": true,
+      "revision_translation_affected": true
+    },
+    "relationships": {
+      "paragraph_type": {
+        "data": {
+          "type": "paragraphs_type--paragraphs_type",
+          "id": "36170ce3-1d71-462d-95d0-01167a11e679"
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9/paragraph_type"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9/relationships/paragraph_type"
+          }
+        }
+      },
+      "field_name": {
+        "data": {
+          "type": "node--levy_collection_names",
+          "id": "e8902145-397f-4783-803d-bd847022af7b"
+        },
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9/field_name"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9/relationships/field_name"
+          }
+        }
+      },
+      "field_roles": {
+        "data": [
+          {
+            "type": "taxonomy_term--creator_r",
+            "id": "cc45eb91-6907-4f89-9c7b-0d06c5f05620"
+          }
+        ],
+        "links": {
+          "related": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9/field_roles"
+          },
+          "self": {
+            "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9/relationships/field_roles"
+          }
+        }
+      }
+    }
+  },
+  "links": {
+    "self": {
+      "href": "https://levy-test.mse.jhu.edu/jsonapi/paragraph/collection_name/ea472fe2-b9f8-4159-9e41-029ab9e220e9"
+    }
+  }
+}
