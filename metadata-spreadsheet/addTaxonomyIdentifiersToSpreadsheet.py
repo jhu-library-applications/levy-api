@@ -18,29 +18,30 @@ directory = os.path.join(dir, 'items-matched/')
 tax = os.path.join(dir, 'logs/')
 filename2 = os.path.join(tax, 'logOfTaxonomyTermsAdded.csv')
 df_2 = pd.read_csv(filename2, header=0)
-pivoted = pd.pivot(df_2, index='fileIdentifier', columns='type', values='id')
-df_2 = pd.DataFrame(pivoted)
-df_2 = df_2.reset_index()
+df_2.set_index('name', inplace=True)
 
 new_items = pd.read_csv(metadata_file)
 
 newDF = pd.DataFrame()
 for count, filename in enumerate(os.listdir(directory)):
-    print(count)
+    field = filename[8:].replace('.csv', '_id')
+    print(field)
     filename = directory + "/" + filename
     if filename.endswith('.csv'):
         df = pd.read_csv(filename)
-        field = filename[:-4].replace(directory+'/matched_', '')
-        field = field+'_id'
+        df.set_index('name', inplace=True)
+        df.update(df_2, join='left', overwrite=False)
         df.rename(columns={'id': field}, inplace=True)
-        df = df.combine_first(df_2)
+        df.reset_index(inplace=True)
         df['fileIdentifier'] = df['fileIdentifier'].str.split('|')
-        df.reset_index()
+        df.drop(columns=['count', 'name', 'taxonomy'], inplace=True)
         df = df.explode('fileIdentifier')
         pivoted = pd.pivot_table(df, index=['fileIdentifier'], values=[field],
                                  aggfunc=lambda x: '|'.join(str(v) for v in x if pd.notna(v)))
         df = pd.DataFrame(pivoted)
-        df = df.reset_index()
+        df.reset_index(inplace=True)
+        print(df.index)
+        print(df.head)
         new_filename = 'completed_'+field+'.csv'
         df.to_csv(new_filename, index=False)
         if count == 0:

@@ -17,8 +17,7 @@ typeSheet = 'allCollectionNames.csv'
 rolesSheet = os.path.join(path, 'existing-taxonomies/creator_r.csv')
 
 rolesList = ['AggregatedByarranger.csv', 'AggregatedBycomposer.csv',
-             'AggregatedBylyricist.csv', 'AggregatedByno_role.csv',
-             'AggregatedBypseudonym.csv']
+             'AggregatedBylyricist.csv']
 
 rolesDF = pd.read_csv(rolesSheet)
 rolesDF = rolesDF.rename(columns={'name': 'role', 'id': 'creator_role_id'})
@@ -30,10 +29,13 @@ for filename in rolesList:
     filename = aggregatedRoles + "/" + filename
     print(filename)
     if filename.endswith('.csv'):
-        df = pd.read_csv(filename)
-        df['role'] = role
-        df = pd.merge(df, rolesDF, how='left', on=['role'])
-        newDF = newDF.append(df, ignore_index=True, sort=True)
+        try:
+            df = pd.read_csv(filename)
+            df['role'] = role
+            df = pd.merge(df, rolesDF, how='left', on=['role'])
+            newDF = newDF.append(df, ignore_index=True, sort=True)
+        except FileNotFoundError:
+            pass
 
 newDF = newDF.drop_duplicates()
 newDF['title'] = newDF['title'].str.strip()

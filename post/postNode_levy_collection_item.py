@@ -9,9 +9,8 @@ import argparse
 
 path = os.getcwd()
 dir = os.path.dirname(path)
-print(dir)
 meta = os.path.join(dir, 'metadata-spreadsheet/')
-print(meta)
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file')
@@ -57,23 +56,29 @@ s.headers.update({'Accept': 'application/vnd.api+json', 'Content-Type':
 
 
 def createAttribute(field, value):
-    try:
-        value = row[value].strip()
-    except AttributeError:
-        value = row[value]
-    if value != '':
+    value = row.get(value)
+    if pd.notna(value):
         attributes[field] = value
     else:
         pass
 
+def createAttributeInteger(field, value):
+    value = row.get(value)
+    if pd.notna(value):
+        value = str(value)
+        value = value.strip()
+        value = value.zfill(3)
+        print(value)
+        attributes[field] = value
+    else:
+        pas
+
 
 def createRelation(field, type, value):
     multipleData = []
-    try:
-        value = row[value].strip()
-    except AttributeError:
-        value = row[value]
+    value = row.get(value)
     if pd.notna(value):
+        value = value.strip()
         if '|' in value:
             values = value.split('|')
             for v in values:
@@ -111,16 +116,16 @@ for i, row in df.iterrows():
     attributes['status'] = True
     createAttribute('title', 'title')
     createAttribute('field_advertisement', 'field_advertisement')
-    # createAttribute('field_artist', 'field_artist')
-    createAttribute('field_box', 'field_box')
+    createAttribute('field_artist', 'field_artist')
+    createAttributeInteger('field_box', 'field_box')
     createAttribute('field_dedicatee', 'field_dedicatee')
     createAttribute('field_first_line', 'field_first_line')
     createAttribute('field_first_line_of_chorus', 'field_first_line_of_chorus')
-    # createAttribute('field_form_of_composition', 'field_form_of_composition')
+    createAttribute('field_form_of_composition', 'field_form_of_composition')
     createAttribute('field_full_title', 'field_full_title')
     createAttribute('field_instrumentation', 'field_instrumentation')
     createAttribute('field_item_author', 'field_item_author')
-    createAttribute('field_item_id', 'field_item_id')
+    createAttributeInteger('field_item_id', 'field_item_id')
     createAttribute('field_plate_number', 'field_plate_number')
     createAttribute('field_publish_date_text', 'field_publish_date_text')
     createAttribute('field_publish_date_year', 'field_publish_date_year')
@@ -171,7 +176,7 @@ for i, row in df.iterrows():
         post = s.patch(para_link, data=metadata, cookies=s.cookies).json()
         drupal_internal__id = post['data']['attributes']['drupal_internal__id']
         result = 'Paragraph {} patch results: {}.'.format(paragraph_id, drupal_internal__id)
-        print('Paragraph {} of {}. {}'.format(count, total_para, result))
+        print('Paragraph {} of {}. {}'.format(count+1, total_para, result))
         errors = post.get('errors')
         if errors:
             for error in errors:
@@ -212,7 +217,7 @@ for i, row in df.iterrows():
             for error in errors:
                 error = error['detail']
                 print('Item post errors: {}'.format(error))
-        print('Image {} of {}. {}'.format(count, total_images, result))
+        print('Image {} of {}. {}'.format(count+1, total_images, result))
         patches = logDict.get('image_patches')
         if patches is None:
             logDict['image_patches'] = result
