@@ -5,6 +5,7 @@ import simplejson
 import time
 import pandas as pd
 import os
+import argparse
 
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
@@ -19,6 +20,16 @@ else:
 baseURL = secrets.baseURL
 username = secrets.username
 password = secrets.password
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file')
+args = parser.parse_args()
+
+if args.file:
+    filename = args.file
+else:
+    filename = input('Enter filename (including \'.csv\'): ')
+
 
 image_type = 'jsonapi/paragraph/collection_item_image'
 
@@ -122,7 +133,6 @@ def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
 
 
 # Open file CSV as DataFrame.
-filename = 'allFiles_test_02.csv'
 df = pd.read_csv(filename)
 
 allItems = []

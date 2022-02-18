@@ -152,12 +152,14 @@ for i, row in df.iterrows():
     id = rdata.get('id')
     nid = rdata['attributes']['drupal_internal__nid']
     path = rdata['attributes']['path']
+    title = rdata['attributes']['title']
     link = rdata['links']['self']['href']
     print('Item id {}, item nid {}'.format(id, nid))
     print('Item path {}'.format(path))
+    logDict['title'] = title
     logDict['item_id'] = id
     logDict['item_nid'] = nid
-    logDict['item_link'] = link
+    logDict['api_link'] = link
 
     # Update item's collection_name paragraphs.
     paragraph_ids = paragraph_ids.split('|')
@@ -187,7 +189,7 @@ for i, row in df.iterrows():
             logDict['para_patches'] = result
         else:
             patches = patches+'|'+result
-            logDict['para_patches'] = result
+            logDict['para_patches'] = patches
         p_field = {"type": "paragraph--collection_name",
                    "id": paragraph_id,
                    "meta": {"target_revision_id": revisionID}}
@@ -223,7 +225,7 @@ for i, row in df.iterrows():
             logDict['image_patches'] = result
         else:
             patches = patches+'|'+result
-            logDict['image_patches'] = result
+            logDict['image_patches'] = patches
         i_field = {"type": "paragraph--collection_item_image",
                    "id": image_id,
                    "meta": {"target_revision_id": revisionID}}
@@ -241,10 +243,12 @@ for i, row in df.iterrows():
     errors = patch.get('errors')
     if errors is None:
         print('Successful item patch')
-        updatedPeople = patch['data']['relationships']['field_people']
-        updatedImages = patch['data']['relationships']['field_images']
+        updatedPeople = patch['data']['relationships']['field_people']['data']
+        updatedImages = patch['data']['relationships']['field_images']['data']
         logDict['itemPatch_people'] = updatedPeople
+        logDict['itemPatch_people_total'] = len(updatedPeople)
         logDict['itemPatch_images'] = updatedImages
+        logDict['itemPatch_images_total'] = len(updatedImages)
         print('')
     else:
         for error in errors:
@@ -255,7 +259,7 @@ for i, row in df.iterrows():
 # Convert log results to DataFrame, export as CSV.
 log = pd.DataFrame.from_dict(allItems)
 dt = datetime.now().strftime('%Y-%m-%d')
-log.to_csv('logofLevyCollectionItems_'+dt+'.csv')
+log.to_csv('logofLevyCollectionItems_'+dt+'.csv', index=False)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)
