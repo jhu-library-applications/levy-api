@@ -162,40 +162,42 @@ for i, row in df.iterrows():
     logDict['api_link'] = link
 
     # Update item's collection_name paragraphs.
-    paragraph_ids = paragraph_ids.split('|')
-    total_para = len(paragraph_ids)
-    logDict['total_para'] = total_para
-    people_data = []
-    for count, paragraph_id in enumerate(paragraph_ids):
-        ptype = 'jsonapi/paragraph/collection_name/'
-        para_link = baseURL+ptype+paragraph_id
-        para = s.get(para_link, cookies=s.cookies).json()
-        paradata = para.get('data')
-        attributes = paradata['attributes']
-        attributes['parent_id'] = nid
-        revisionID = attributes["drupal_internal__revision_id"]
-        metadata = json.dumps(para)
-        post = s.patch(para_link, data=metadata, cookies=s.cookies).json()
-        drupal_internal__id = post['data']['attributes']['drupal_internal__id']
-        result = 'Paragraph {} patch results: {}.'.format(paragraph_id, drupal_internal__id)
-        print('Paragraph {} of {}. {}'.format(count+1, total_para, result))
-        errors = post.get('errors')
-        if errors:
-            for error in errors:
-                error = error['detail']
-                print('Item post errors: {}'.format(error))
-        patches = logDict.get('para_patches')
-        if patches is None:
-            logDict['para_patches'] = result
-        else:
-            patches = patches+'|'+result
-            logDict['para_patches'] = patches
-        p_field = {"type": "paragraph--collection_name",
-                   "id": paragraph_id,
-                   "meta": {"target_revision_id": revisionID}}
-        people_data.append(p_field)
-    field_people = {'data': people_data}
-
+    if pd.notna(paragraph_ids):
+        paragraph_ids = paragraph_ids.split('|')
+        total_para = len(paragraph_ids)
+        logDict['total_para'] = total_para
+        people_data = []
+        for count, paragraph_id in enumerate(paragraph_ids):
+            ptype = 'jsonapi/paragraph/collection_name/'
+            para_link = baseURL+ptype+paragraph_id
+            para = s.get(para_link, cookies=s.cookies).json()
+            paradata = para.get('data')
+            attributes = paradata['attributes']
+            attributes['parent_id'] = nid
+            revisionID = attributes["drupal_internal__revision_id"]
+            metadata = json.dumps(para)
+            post = s.patch(para_link, data=metadata, cookies=s.cookies).json()
+            drupal_internal__id = post['data']['attributes']['drupal_internal__id']
+            result = 'Paragraph {} patch results: {}.'.format(paragraph_id, drupal_internal__id)
+            print('Paragraph {} of {}. {}'.format(count+1, total_para, result))
+            errors = post.get('errors')
+            if errors:
+                for error in errors:
+                    error = error['detail']
+                    print('Item post errors: {}'.format(error))
+            patches = logDict.get('para_patches')
+            if patches is None:
+                logDict['para_patches'] = result
+            else:
+                patches = patches+'|'+result
+                logDict['para_patches'] = patches
+            p_field = {"type": "paragraph--collection_name",
+                       "id": paragraph_id,
+                       "meta": {"target_revision_id": revisionID}}
+            people_data.append(p_field)
+        field_people = {'data': people_data}
+    else:
+        pass
     # Update item's collection_item_image paragraphs.
     item_image_ids = item_image_ids.split('|')
     total_images = len(item_image_ids)

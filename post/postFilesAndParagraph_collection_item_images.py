@@ -48,6 +48,7 @@ header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}
 session = s.post(baseURL+'user/login?_format=json', headers=header,
                  json=data).json()
+print(session)
 token = session['csrf_token']
 status = s.get(baseURL+'user/login_status?_format=json').json()
 if status == 1:
@@ -60,7 +61,7 @@ def postFile(file, endpoint, file_type, fileIdentifier):
 
     # Create Content-Disposition value using filename for header.
     cd_value = 'file; filename="{}"'.format(file)
-
+    print(cd_value)
     # Read file as binary.
     data = open(file, 'rb')
 
@@ -71,6 +72,7 @@ def postFile(file, endpoint, file_type, fileIdentifier):
     # Post file.
     try:
         post = s.post(baseURL+endpoint, data=data, cookies=s.cookies).json()
+        print(post)
         file_id = post['data']['id']
         fileLog['postType'] = 'file'
         fileLog[file_type] = file_id
@@ -116,6 +118,7 @@ def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
     # Try to post new paragraph collection_item_image.
     try:
         post = s.post(baseURL+image_type, data=metadata, cookies=s.cookies).json()
+        print(post)
         # Gets paragraph data for log
         data = post.get('data')
         image_id = data.get('id')
