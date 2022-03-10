@@ -103,7 +103,6 @@ for index, row in df.iterrows():
     endpoint = 'jsonapi/file/file/'+id
     r = s.get(baseURL+endpoint).json()
     data = r.get('data')
-    print(len(data))
     fetchData(data)
     file = os.path.join(image_directory, filename)
     postFile(file, endpoint)
