@@ -34,3 +34,8 @@ secretsProd.py
 
 ## Wiki
 Please see the [wiki](https://github.com/mjanowiecki/levy-api/wiki) for instructions and more information about the API.
+
+## Script information
+
+### replaceImages.py
+Script made to replace images in specific items.

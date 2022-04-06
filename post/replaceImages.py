@@ -126,6 +126,7 @@ def patchCollectionItemImage(old_id, new_id, paragraph_id):
     image = data['relationships']['field_item_image']['data']
     # Update file id in metadata.
     image['id'] = new_id
+    del data['relationships']['field_item_image']['data']['meta']
     metadata = {"data": data}
     metadata = json.dumps(metadata)
 
@@ -170,13 +171,13 @@ for index, row in df.iterrows():
     url = baseURL+endpoint
     old_id = fetchData(url)
     if old_id:
-        new_id = postFile(file)
-        if new_id:
-            # Replace old_id with new_id in field_item_image.
-            patch_results = patchCollectionItemImage(old_id, new_id, paragraph_id)
-            if patch_results:
-                # Delete old file.
-                results = deleteFile(url)
+        # Delete old file.
+        results = deleteFile(url)
+        if results:
+            new_id = postFile(file)
+            if new_id:
+                # Replace old_id with new_id in field_item_image.
+                patch_results = patchCollectionItemImage(old_id, new_id, paragraph_id)
     else:
         pass
     for key, value in itemDict.items():
