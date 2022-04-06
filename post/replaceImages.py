@@ -34,8 +34,8 @@ startTime = time.time()
 
 # Save terminal output to file.
 # python3 replaceImage.py -f somefile.csv | tee output.txt
-# The standard output stream will be copied to the file, it will still be visible in the terminal.
-# If the file already exists, it gets overwritten.
+# Output stream will be copied to txt file and still be visible in terminal.
+# If txt file already exists, it gets overwritten.
 
 # Authenicate to Drupal site, get token
 s = requests.Session()
@@ -68,6 +68,7 @@ def fetchData(url):
     except AttributeError:
         old_id = False
     return old_id
+
 
 def deleteFile(url):
     s.headers.update({'Accept': 'application/vnd.api+json', 'X-CSRF-Token': token})
@@ -110,9 +111,9 @@ def postFile(file):
         itemDict['upload_new_file'] = True
         print('Upload successful')
     except simplejson.errors.JSONDecodeError:
-         itemDict['upload_new_file'] = False
-         new_id = False
-         print('Upload failure')
+        itemDict['upload_new_file'] = False
+        new_id = False
+        print('Upload failure')
     return new_id
 
 
@@ -133,7 +134,8 @@ def patchCollectionItemImage(old_id, new_id, paragraph_id):
                       'application/vnd.api+json', 'X-CSRF-Token': token})
     # Try to patch new paragraph collection_item_image.
     try:
-        patch = s.patch(baseURL+type+paragraph_id, data=metadata, cookies=s.cookies).json()
+        patch = s.patch(baseURL+type+paragraph_id, data=metadata,
+                        cookies=s.cookies).json()
         # Gets paragraph data for log
         data = patch.get('data')
         para_image_id = data.get('id')
@@ -148,6 +150,7 @@ def patchCollectionItemImage(old_id, new_id, paragraph_id):
         itemDict['patchSuccessful'] = patch_results
     return patch_results
 
+
 # Open file CSV as DataFrame.
 df = pd.read_csv(filename)
 
@@ -160,8 +163,8 @@ for index, row in df.iterrows():
     old_id = row.get('file_id')
     filesize = row.get('filesize')
     image_directory = 'H:\Lester S. Levy Sheet Music Collection\9. Gottesman Images Output\LevyImageFilesForSam72DPI_1000pxMAX'
-    itemDict = {'fileIdentifier': fileIdentifier, 'filename': filename, 'paragraph_id': paragraph_id,
-                 'old_filesize': filesize}
+    itemDict = {'fileIdentifier': fileIdentifier, 'filename': filename,
+                'paragraph_id': paragraph_id, 'old_filesize': filesize}
     file = os.path.join(image_directory, filename)
     endpoint = 'jsonapi/file/file/'+old_id
     url = baseURL+endpoint

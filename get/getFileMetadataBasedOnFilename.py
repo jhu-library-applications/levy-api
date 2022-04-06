@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import secrets
 import argparse
+import simplejson
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file')
@@ -40,15 +41,19 @@ status = s.get(baseURL+'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 
+
 # Function grabs filename and uris from file object.
 def fetchData(data):
     for count, term in enumerate(data):
         attributes = term.get('attributes')
         id = term.get('id')
         filename = attributes.get('filename')
+        url = attributes['uri']['url']
         itemDict['id'] = id
         itemDict['filename'] = filename
+        itemDict['url'] = url
         print(id)
+
 
 df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
@@ -56,12 +61,13 @@ allItems = []
 for index, row in df.iterrows():
     itemDict = {}
     filename = row.get('filename')
+    filename = filename.strip()
     try:
         r = s.get(baseURL+type+filter+filename).json()
         data = r.get('data')
         fetchData(data)
     except simplejson.errors.JSONDecodeError:
-        itemDict = {'filename': filename, 'id': 'not found' }
+        itemDict = {'filename': filename, 'id': 'not found'}
     allItems.append(itemDict)
 
 
