@@ -1,9 +1,6 @@
 import requests
 import secrets
-import json
 import pandas as pd
-import time
-import os
 
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
@@ -37,18 +34,29 @@ status = s.get(baseURL+'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 
-# Update headers for posting to Drupal
+# Update headers for DELETE requests in Drupal
 s.headers.update({'Accept': 'application/vnd.api+json', 'X-CSRF-Token': token})
 
 filename = 'filesToDelete.csv'
 df = pd.read_csv(filename)
 
-# Loop through DataFrame and create JSON for each row
-all_items = []
+# Loop through DataFrame
+allItems = []
 for index, row in df.iterrows():
+    filename = row['filename']
+    print(index, filename)
     file_uuid = row['file_uuid']
-
-# Post taxonomy JSON to Drupal site and save results in dictonary
     full_link = baseURL+fileLink+file_uuid
     delete = s.delete(full_link, cookies=s.cookies)
+    # HTTP 204 (No content) response means the fileLink is deleted.
+    # HTTP 404 means not found.
+    row['delete'] = delete
     print(delete)
+    allItems.append(row)
+
+
+all_items = pd.DataFrame.from_dict(allItems)
+print(all_items.head)
+
+# Create CSV for new DataFrame.
+all_items.to_csv('deletedFileLog.csv', index=False)

@@ -15,7 +15,8 @@ else:
 baseURL = secrets.baseURL
 
 type = 'jsonapi/node/levy_collection_item'
-ext = '?filter[a-label][condition][path]=field_publish_date_year&filter[a-label][condition][operator]=IS NULL'
+field = 'field_publish_date_year'
+ext = '?filter[a-label][condition][path]='+field+'&filter[a-label][condition][operator]=IS NULL'
 
 # List of single value fields
 relation_dict = ['node_type', 'field_pdf', 'field_publisher']
@@ -96,4 +97,4 @@ all_items = pd.DataFrame.from_dict(allItems)
 print(all_items.head)
 
 # Create CSV for new DataFrame.
-all_items.to_csv('levyCollectionItems.csv', index=False)
+all_items.to_csv('levyCollectionItemsWithout'+field+'.csv', index=False)

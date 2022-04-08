@@ -45,6 +45,7 @@ if status == 1:
 # Function grabs filename and uris from file object.
 def fetchData(data):
     for count, term in enumerate(data):
+        itemDict = {}
         attributes = term.get('attributes')
         id = term.get('id')
         filename = attributes.get('filename')
@@ -53,13 +54,13 @@ def fetchData(data):
         itemDict['filename'] = filename
         itemDict['url'] = url
         print(id)
+        allItems.append(itemDict)
 
 
 df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
 allItems = []
 for index, row in df.iterrows():
-    itemDict = {}
     filename = row.get('filename')
     filename = filename.strip()
     try:
@@ -67,9 +68,9 @@ for index, row in df.iterrows():
         data = r.get('data')
         fetchData(data)
     except simplejson.errors.JSONDecodeError:
+        itemDict = {}
         itemDict = {'filename': filename, 'id': 'not found'}
-    allItems.append(itemDict)
-
+        allItems.append(itemDict)
 
 all_items = pd.DataFrame.from_dict(allItems)
 print(all_items.head)
