@@ -1,6 +1,16 @@
 import requests
 import pandas as pd
 import secrets
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file')
+args = parser.parse_args()
+
+if args.file:
+    metadata_file = args.file
+else:
+    metadata_file = input('Enter filename (including \'.csv\'): ')
 
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
@@ -20,7 +30,7 @@ filter1 = '?filter[field_box]='
 filter2 = '&filter[field_item_id]='
 
 
-df = pd.read_csv('fileIdentifiers_2022-03-11.csv')
+df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
 allItems = []
 for index, row in df.iterrows():
@@ -28,11 +38,11 @@ for index, row in df.iterrows():
     box = fileId[5:8]
     item = fileId[-3:]
     url = baseURL+type+filter1+box+filter2+item+ext
-    print(url)
+    print(index, url)
     r = requests.get(url).json()
     data = r.get('data')
     included = r.get('included')
-    if len(included) > 0:
+    if included:
         for item in included:
             newRow = {'fileIdentifier': fileId}
             paragraph_id = item['id']
@@ -47,7 +57,8 @@ for index, row in df.iterrows():
                         file_id = field_item_image['data']['id']
                         print(file_id)
                         newRow['file_id'] = file_id
-                        r = requests.get(baseURL+'jsonapi/file/file/'+file_id).json()
+                        file_url = baseURL+'jsonapi/file/file/'+file_id
+                        r = requests.get(file_url).json()
                         attributes = r['data']['attributes']
                         filename = attributes.get('filename')
                         filesize = attributes.get('filesize')
