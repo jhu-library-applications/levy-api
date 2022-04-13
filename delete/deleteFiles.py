@@ -46,6 +46,7 @@ for index, row in df.iterrows():
     filename = row['filename']
     print(index, filename)
     file_uuid = row['file_uuid']
+    file_uuid = file_uuid.strip()
     full_link = baseURL+fileLink+file_uuid
     delete = s.delete(full_link, cookies=s.cookies)
     # HTTP 204 (No content) response means the fileLink is deleted.
