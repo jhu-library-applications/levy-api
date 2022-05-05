@@ -88,4 +88,4 @@ all_items = pd.DataFrame.from_dict(allItems)
 print(all_items.head)
 
 # Create CSV for new DataFrame.
-all_items.to_csv('allParagraphs_collecction_item_image.csv', index=False)
+all_items.to_csv('levy_item_item_FromURLalias.csv', index=False)
