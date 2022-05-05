@@ -71,7 +71,7 @@ def createAttributeInteger(field, value):
         print(value)
         attributes[field] = value
     else:
-        pas
+        pass
 
 
 def createRelation(field, type, value):
