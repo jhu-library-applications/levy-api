@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 from datetime import datetime
 import os
-import secrets
+import secret
 
 path = os.getcwd()
 dir = os.path.dirname(path)

@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-import secrets
+import secret
 import argparse
 import simplejson
 
@@ -30,7 +30,7 @@ filter = '?filter[filename]='
 username = secrets.username
 password = secrets.password
 
-# Authenicate to Drupal site, get token
+# Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}

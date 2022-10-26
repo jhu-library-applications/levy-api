@@ -23,20 +23,19 @@ if secretsVersion != '':
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
+baseURL = secret.baseURL
 type = 'jsonapi/node/levy_collection_item'
-filter1 = '?filter[field_box]='
-filter2 = '&filter[field_item_id]='
+filter1 = '?filter[field_subjects.name][value]='
 
-username = secrets.username
-password = secrets.password
+username = secret.username
+password = secret.password
 
 # Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}
 session = s.post(baseURL+'user/login?_format=json', headers=header,
-                 json=data).json()
+                 json=data, verify=False).json()
 token = session['csrf_token']
 status = s.get(baseURL+'user/login_status?_format=json').json()
 if status == 1:
@@ -44,9 +43,9 @@ if status == 1:
 
 
 # Function grabs filename and uris from file object.
-def fetchData(data):
+def fetchData(subject, data):
     for count, term in enumerate(data):
-        itemDict = {}
+        itemDict = {'subjectSearched': subject}
         attributes = term.get('attributes')
         relationships = term.get('relationships')
         for key, value in attributes.items():
@@ -68,24 +67,32 @@ df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
 allItems = []
 for index, row in df.iterrows():
-    url_alias = row.get('url_alias')
-    url_alias = url_alias.split('/')
-    box = url_alias[-2]
-    item_id = url_alias[-1]
-    url_api = baseURL+type+filter1+box+filter2+item_id
-    print(url_api)
-    try:
-        r = s.get(url_api).json()
+    subject = row.get('subject')
+    totalItemCount = 0
+    nextList = []
+    while totalItemCount < 10000:
+        if not nextList:
+            url_api = baseURL+type+filter1+subject
+            print(url_api)
+            r = s.get(url_api).json()
+        else:
+            nextLink = nextList[0]
+            r = s.get(nextLink).json()
         data = r.get('data')
-        print(len(data))
-        fetchData(data)
-    except simplejson.errors.JSONDecodeError:
-        itemDict = {}
-        itemDict = {'url_alias': url_alias}
-        allItems.append(itemDict)
+        item_count = (len(data))
+        totalItemCount = item_count + totalItemCount
+        fetchData(subject, data)
+        nextList.clear()
+        links = r.get('links')
+        nextDict = links.get('next')
+        if nextDict:
+            nextLink = nextDict.get('href')
+            nextList.append(nextLink)
+        else:
+            break
 
 all_items = pd.DataFrame.from_dict(allItems)
 print(all_items.head)
 
 # Create CSV for new DataFrame.
-all_items.to_csv('levy_item_item_FromURLalias.csv', index=False)
+all_items.to_csv('levy_collection_item_BySubject.csv', index=False)

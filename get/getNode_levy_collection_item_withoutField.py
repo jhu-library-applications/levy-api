@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-import secrets
+import secret
 
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':

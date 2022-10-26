@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-import secrets
+import secret
 import argparse
 
 parser = argparse.ArgumentParser()

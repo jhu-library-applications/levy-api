@@ -22,7 +22,7 @@ fileLink = 'jsonapi/file/file/'
 username = secrets.username
 password = secrets.password
 
-# Authenicate to Drupal site, get token
+# Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}

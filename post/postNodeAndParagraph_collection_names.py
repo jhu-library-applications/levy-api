@@ -29,7 +29,7 @@ directory = os.path.join(dir, 'logs')
 if not os.path.exists(directory):
     os.mkdir(directory)
 
-# Authenicate to Drupal site, get token
+# Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}
@@ -62,7 +62,7 @@ for index, row in df.iterrows():
     tax_item['data'] = tax_dict
     metadata = json.dumps(tax_item)
 
-# Post levy_collection_name JSON to Drupal site and save results in dictonary
+# Post levy_collection_name JSON to Drupal site and save results in dictionary
     type = 'jsonapi/node/levy_collection_names/'
     post = s.post(baseURL+type, data=metadata, cookies=s.cookies).json()
     data = post.get('data')

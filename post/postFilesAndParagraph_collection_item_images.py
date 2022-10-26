@@ -42,7 +42,7 @@ directory = os.path.join(dir, 'logs')
 if not os.path.exists(directory):
     os.mkdir(directory)
 
-# Authenicate to Drupal site, get token
+# Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}

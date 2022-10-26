@@ -37,7 +37,7 @@ startTime = time.time()
 # Output stream will be copied to txt file and still be visible in terminal.
 # If txt file already exists, it gets overwritten.
 
-# Authenicate to Drupal site, get token
+# Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}

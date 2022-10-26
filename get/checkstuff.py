@@ -1,5 +1,5 @@
 import requests
-import secrets
+import secret
 import time
 import pandas as pd
 import argparse

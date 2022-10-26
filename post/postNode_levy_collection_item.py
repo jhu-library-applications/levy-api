@@ -39,7 +39,7 @@ type = 'jsonapi/node/levy_collection_item/'
 
 startTime = time.time()
 
-# Authenicate to Drupal site, get token
+# Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}
