@@ -28,6 +28,7 @@ type = '/jsonapi/taxonomy_term/'
 taxonomies = ['composition_metadata', 'c', 'creator_r', 'duplicat',
               'instrumentation_metadata', 'publishers', 'subjects']
 
+
 # Function grabs name and uris from taxonomy terms.
 def fetchData(data):
     for count, term in enumerate(data):

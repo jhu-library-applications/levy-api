@@ -2,7 +2,6 @@ import requests
 import pandas as pd
 import secret
 import argparse
-import simplejson
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file')
@@ -16,7 +15,7 @@ else:
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
@@ -24,43 +23,43 @@ else:
     print('Editing Stage')
 
 baseURL = secret.baseURL
-type = 'jsonapi/node/levy_collection_item'
-filter1 = '?filter[field_subjects.name][value]='
+entity_type = 'jsonapi/node/levy_collection_item'
+field_filter = '?filter[field_subjects.name][value]='
 
 username = secret.username
 password = secret.password
 
 # Authenticate to Drupal site, get token
 s = requests.Session()
-header = {'Content-type': 'application/json'}
+header = {'Content-entity_type': 'application/json'}
 data = {'name': username, 'pass': password}
-session = s.post(baseURL+'user/login?_format=json', headers=header,
+session = s.post(baseURL + 'user/login?_format=json', headers=header,
                  json=data, verify=False).json()
 token = session['csrf_token']
-status = s.get(baseURL+'user/login_status?_format=json').json()
+status = s.get(baseURL + 'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 
 
 # Function grabs filename and uris from file object.
-def fetchData(subject, data):
+def fetch_data(subject, data):
     for count, term in enumerate(data):
-        itemDict = {'subjectSearched': subject}
+        item_dict = {'subjectSearched': subject}
         attributes = term.get('attributes')
         relationships = term.get('relationships')
         for key, value in attributes.items():
-            itemDict[key] = value
+            item_dict[key] = value
         for r_key, r_value in relationships.items():
             data = r_value.get('data')
             if isinstance(data, list):
                 for v in data:
-                    id = v.get('id')
-                    existingValue = itemDict.get(r_key)
-                    if existingValue:
-                        itemDict[r_key] = existingValue+'|'+id
+                    identifier = v.get('id')
+                    existing_value = item_dict.get(r_key)
+                    if existing_value:
+                        item_dict[r_key] = existing_value + '|' + identifier
                     else:
-                        itemDict[r_key] = id
-        allItems.append(itemDict)
+                        item_dict[r_key] = identifier
+        allItems.append(item_dict)
 
 
 df = pd.read_csv(metadata_file)
@@ -72,7 +71,7 @@ for index, row in df.iterrows():
     nextList = []
     while totalItemCount < 10000:
         if not nextList:
-            url_api = baseURL+type+filter1+subject
+            url_api = baseURL + entity_type + field_filter + subject
             print(url_api)
             r = s.get(url_api).json()
         else:
@@ -81,7 +80,7 @@ for index, row in df.iterrows():
         data = r.get('data')
         item_count = (len(data))
         totalItemCount = item_count + totalItemCount
-        fetchData(subject, data)
+        fetch_data(subject, data)
         nextList.clear()
         links = r.get('links')
         nextDict = links.get('next')
