@@ -47,6 +47,8 @@ if status == 1:
 def fetchData(data):
     for count, term in enumerate(data):
         itemDict = {}
+        item_identifier = term.get('id')
+        itemDict['item_identifier'] = item_identifier
         attributes = term.get('attributes')
         relationships = term.get('relationships')
         for key, value in attributes.items():

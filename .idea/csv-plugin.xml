@@ -10,10 +10,38 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/get/subjectsToSearch.csv">
+        <entry key="/get/levy_item_item_FromURLalias.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/get/subject_search.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/post/log_AddingAdditionalSubjects.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/post/subjectsToAddWithItem_Ids.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="|" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/post/test_subjectsToAdd.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="|" />
             </Attribute>
           </value>
         </entry>
