@@ -16,64 +16,64 @@ else:
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-type = '/jsonapi/file/file/'
-filter = '?filter[filename]='
+base_url = secret.base_url
+endpoint_type = '/jsonapi/file/file/'
+endpoint_filter = '?filter[filename]='
 
-username = secrets.username
-password = secrets.password
+username = secret.username
+password = secret.password
 
 # Authenticate to Drupal site, get token
 s = requests.Session()
 header = {'Content-type': 'application/json'}
 data = {'name': username, 'pass': password}
-session = s.post(baseURL+'user/login?_format=json', headers=header,
+session = s.post(base_url+'user/login?_format=json', headers=header,
                  json=data).json()
 token = session['csrf_token']
-status = s.get(baseURL+'user/login_status?_format=json').json()
+status = s.get(base_url+'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 
 
 # Function grabs filename and uris from file object.
-def fetchData(data):
+def fetch_data(data):
     for count, term in enumerate(data):
-        itemDict = {}
+        item_dict = {}
         attributes = term.get('attributes')
-        id = term.get('id')
-        filename = attributes.get('filename')
+        term_id = term.get('id')
+        file_name = attributes.get('filename')
         url = attributes['uri']['url']
-        itemDict['id'] = id
-        itemDict['filename'] = filename
-        itemDict['url'] = url
+        item_dict['id'] = term_id
+        item_dict['filename'] = file_name
+        item_dict['url'] = url
         print(id)
-        allItems.append(itemDict)
+        all_items.append(item_dict)
 
 
 df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
-allItems = []
+all_items = []
 for index, row in df.iterrows():
     filename = row.get('filename')
     filename = filename.strip()
     try:
-        r = s.get(baseURL+type+filter+filename).json()
+        r = s.get(base_url+endpoint_type+endpoint_filter+filename).json()
         data = r.get('data')
-        fetchData(data)
+        fetch_data(data)
     except simplejson.errors.JSONDecodeError:
-        itemDict = {}
-        itemDict = {'filename': filename, 'id': 'not found'}
-        allItems.append(itemDict)
+        item_dict = {}
+        item_dict = {'filename': filename, 'id': 'not found'}
+        all_items.append(item_dict)
 
-all_items = pd.DataFrame.from_dict(allItems)
+all_items = pd.DataFrame.from_records(all_items)
 print(all_items.head)
 
 # Create CSV for new DataFrame.
-all_items.to_csv('allParagraphs_collecction_item_image.csv', index=False)
+all_items.to_csv('allParagraphs_collection_item_image.csv', index=False)

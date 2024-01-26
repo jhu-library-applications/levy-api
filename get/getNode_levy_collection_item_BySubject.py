@@ -22,7 +22,7 @@ if secretsVersion != '':
 else:
     print('Editing Stage')
 
-baseURL = secret.baseURL
+base_url = secret.base_url
 entity_type = 'jsonapi/node/levy_collection_item'
 field_filter = '?filter[field_subjects.name][value]='
 
@@ -33,10 +33,10 @@ password = secret.password
 s = requests.Session()
 header = {'Content-entity_type': 'application/json'}
 data = {'name': username, 'pass': password}
-session = s.post(baseURL + 'user/login?_format=json', headers=header,
+session = s.post(base_url + 'user/login?_format=json', headers=header,
                  json=data, verify=False).json()
 token = session['csrf_token']
-status = s.get(baseURL + 'user/login_status?_format=json').json()
+status = s.get(base_url + 'user/login_status?_format=json').json()
 if status == 1:
     print('authenticated')
 
@@ -59,38 +59,38 @@ def fetch_data(subject, data):
                         item_dict[r_key] = existing_value + '|' + identifier
                     else:
                         item_dict[r_key] = identifier
-        allItems.append(item_dict)
+        all_items.append(item_dict)
 
 
 df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
-allItems = []
+all_items = []
 for index, row in df.iterrows():
     subject = row.get('subject')
     totalItemCount = 0
-    nextList = []
+    next_page_list = []
     while totalItemCount < 10000:
-        if not nextList:
-            url_api = baseURL + entity_type + field_filter + subject
+        if not next_page_list:
+            url_api = base_url + entity_type + field_filter + subject
             print(url_api)
             r = s.get(url_api).json()
         else:
-            nextLink = nextList[0]
-            r = s.get(nextLink).json()
+            next_page_linkLink = next_page_list[0]
+            r = s.get(next_page_linkLink).json()
         data = r.get('data')
         item_count = (len(data))
         totalItemCount = item_count + totalItemCount
         fetch_data(subject, data)
-        nextList.clear()
+        next_page_list.clear()
         links = r.get('links')
-        nextDict = links.get('next')
-        if nextDict:
-            nextLink = nextDict.get('href')
-            nextList.append(nextLink)
+        next_page_linkDict = links.get('next_page_link_page_link')
+        if next_page_linkDict:
+            next_page_linkLink = next_page_linkDict.get('href')
+            next_page_list.append(next_page_linkLink)
         else:
             break
 
-all_items = pd.DataFrame.from_dict(allItems)
+all_items = pd.DataFrame.from_records(all_items)
 print(all_items.head)
 
 # Create CSV for new DataFrame.

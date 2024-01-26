@@ -1,5 +1,5 @@
 import requests
-import secrets
+import secret
 import json
 import time
 import os
@@ -24,16 +24,16 @@ else:
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-username = secrets.username
-password = secrets.password
+baseURL = secret.baseURL
+username = secret.username
+password = secret.password
 
 type = 'jsonapi/node/levy_collection_item/'
 
@@ -99,7 +99,7 @@ index = df.index
 total = len(index)
 
 # Loop through DataFrame.
-allItems = []
+all_items = []
 for i, row in df.iterrows():
     row = row
     logDict = {}
@@ -256,10 +256,10 @@ for i, row in df.iterrows():
         for error in errors:
             error = error['detail']
             print('Item patch errors: {}'.format(error))
-    allItems.append(logDict)
+    all_items.append(logDict)
 
 # Convert log results to DataFrame, export as CSV.
-log = pd.DataFrame.from_dict(allItems)
+log = pd.DataFrame.from_dict(all_items)
 dt = datetime.now().strftime('%Y-%m-%d')
 log.to_csv('logofLevyCollectionItems_'+dt+'.csv', index=False)
 

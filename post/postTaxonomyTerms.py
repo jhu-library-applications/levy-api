@@ -1,5 +1,5 @@
 import requests
-import secrets
+import secret
 import json
 import pandas as pd
 import time
@@ -8,16 +8,16 @@ import os
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-username = secrets.username
-password = secrets.password
+baseURL = secret.baseURL
+username = secret.username
+password = secret.password
 
 taxonomyLink = 'jsonapi/taxonomy_term/'
 
@@ -65,7 +65,7 @@ for index, row in df.iterrows():
     tax_item['data'] = tax_dict
     metadata = json.dumps(tax_item)
 
-# Post taxonomy JSON to Drupal site and save results in dictonary
+# Post taxonomy JSON to Drupal site and save results in dictionary
     full_link = baseURL+taxonomyLink+tax_type
     post = s.post(full_link, data=metadata, cookies=s.cookies).json()
     data = post.get('data')

@@ -1,25 +1,25 @@
 import requests
-import secrets
 import json
 import simplejson
 import time
 import pandas as pd
 import os
 import argparse
+import secret
 
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-username = secrets.username
-password = secrets.password
+baseURL = secret.baseURL
+username = secret.username
+password = secret.password
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file')
@@ -80,7 +80,7 @@ def postFile(file, endpoint, file_type, fileIdentifier):
         fileLog['postType'] = 'file'
         fileLog[file_type] = 'UPLOAD FAILED'
         file_id = False
-    allItems.append(fileLog)
+    all_items.append(fileLog)
     return file_id
 
 
@@ -132,13 +132,13 @@ def postCollectionItemImage(metadata, fileIdentifier, file_id, file):
         fileLog['postType'] = 'collection_item_image'
         fileLog['image_id'] = 'UPLOAD FAILED'
         fileLog['revision_id'] = 'UPLOAD FAILED'
-    allItems.append(fileLog)
+    all_items.append(fileLog)
 
 
 # Open file CSV as DataFrame.
 df = pd.read_csv(filename)
 
-allItems = []
+all_items = []
 for index, row in df.iterrows():
     print('Posting files for item {}'.format(index))
     fileIdentifier = row['fileIdentifier']
@@ -178,7 +178,7 @@ for index, row in df.iterrows():
 
 
 # Convert results to DataFrame, export as CSV
-log = pd.DataFrame.from_dict(allItems)
+log = pd.DataFrame.from_records(all_items)
 newFile = 'logOfImagesAndPDFs.csv'
 fullname = os.path.join(directory, newFile)
 log.to_csv(fullname, index=False)

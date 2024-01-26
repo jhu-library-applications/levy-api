@@ -1,5 +1,5 @@
 import requests
-import secrets
+import secret
 import json
 import simplejson
 import time
@@ -10,16 +10,16 @@ import argparse
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-username = secrets.username
-password = secrets.password
+baseURL = secret.baseURL
+username = secret.username
+password = secret.password
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--file')
@@ -50,7 +50,7 @@ if status == 1:
 
 
 # Function grabs data from file metadata object.
-def fetchData(url):
+def fetch_data(url):
     try:
         r = s.get(url).json()
         data = r.get('data')
@@ -60,9 +60,9 @@ def fetchData(url):
         uri = attributes.get('uri')
         filesize = attributes.get('filesize')
         print('Successfully retrieved file metadata for {}'.format(old_id))
-        itemDict['old_filename'] = filename
-        itemDict['old_uri'] = uri['url']
-        itemDict['old_filesize'] = filesize
+        item_dict['old_filename'] = filename
+        item_dict['old_uri'] = uri['url']
+        item_dict['old_filesize'] = filesize
     except simplejson.errors.JSONDecodeError:
         old_id = False
     except AttributeError:
@@ -79,7 +79,7 @@ def deleteFile(url):
         results = True
     else:
         results = False
-    itemDict['old_file_deleted'] = results
+    item_dict['old_file_deleted'] = results
     return results
 
 
@@ -104,14 +104,14 @@ def postFile(file):
         filename = attributes.get('filename')
         uri = attributes.get('uri')
         filesize = attributes.get('filesize')
-        itemDict['new_id'] = new_id
-        itemDict['new_filename'] = filename
-        itemDict['new_uri'] = uri['url']
-        itemDict['new_filesize'] = filesize
-        itemDict['upload_new_file'] = True
+        item_dict['new_id'] = new_id
+        item_dict['new_filename'] = filename
+        item_dict['new_uri'] = uri['url']
+        item_dict['new_filesize'] = filesize
+        item_dict['upload_new_file'] = True
         print('Upload successful')
     except simplejson.errors.JSONDecodeError:
-        itemDict['upload_new_file'] = False
+        item_dict['upload_new_file'] = False
         new_id = False
         print('Upload failure')
     return new_id
@@ -143,19 +143,19 @@ def patchCollectionItemImage(old_id, new_id, paragraph_id):
         file_id = data['relationships']['field_item_image']['data']['id']
         patch_results = True
         # Records data for log.
-        itemDict['patch_posted'] = patch_results
-        itemDict['para_image_id'] = para_image_id
-        itemDict['file_id'] = file_id
+        item_dict['patch_posted'] = patch_results
+        item_dict['para_image_id'] = para_image_id
+        item_dict['file_id'] = file_id
     except json.decoder.JSONDecodeError:
         patch_results = False
-        itemDict['patchSuccessful'] = patch_results
+        item_dict['patchSuccessful'] = patch_results
     return patch_results
 
 
 # Open file CSV as DataFrame.
 df = pd.read_csv(filename)
 
-allItems = []
+all_items = []
 for index, row in df.iterrows():
     print('Replacing file {}'.format(index+1))
     fileIdentifier = row.get('fileIdentifier')
@@ -164,12 +164,12 @@ for index, row in df.iterrows():
     old_id = row.get('file_id')
     filesize = row.get('filesize')
     image_directory = 'H:\Lester S. Levy Sheet Music Collection\9. Gottesman Images Output\LevyImageFilesForSam72DPI_1000pxMAX'
-    itemDict = {'fileIdentifier': fileIdentifier, 'filename': filename,
-                'paragraph_id': paragraph_id, 'old_filesize': filesize}
+    item_dict = {'fileIdentifier': fileIdentifier, 'filename': filename,
+                 'paragraph_id': paragraph_id, 'old_filesize': filesize}
     file = os.path.join(image_directory, filename)
     endpoint = 'jsonapi/file/file/'+old_id
     url = baseURL+endpoint
-    old_id = fetchData(url)
+    old_id = fetch_data(url)
     if old_id:
         # Delete old file.
         results = deleteFile(url)
@@ -180,13 +180,13 @@ for index, row in df.iterrows():
                 patch_results = patchCollectionItemImage(old_id, new_id, paragraph_id)
     else:
         pass
-    for key, value in itemDict.items():
+    for key, value in item_dict.items():
         print("{}: {}".format(key, value))
     print("")
-    allItems.append(itemDict)
+    all_items.append(item_dict)
 
 # Convert results to DataFrame, export as CSV
-log = pd.DataFrame.from_dict(allItems)
+log = pd.DataFrame.from_dict(all_items)
 log.to_csv('logReplacingImages.csv', index=False)
 
 elapsedTime = time.time() - startTime

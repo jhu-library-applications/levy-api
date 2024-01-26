@@ -5,54 +5,54 @@ import secret
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-type = 'jsonapi/paragraph/collection_name'
+base_url = secret.base_url
+endpoint_type = 'jsonapi/paragraph/collection_name'
 
 
 # Function grabs name and uris from collection_name.
-def fetchData(data):
+def fetch_data(data):
     for count, term in enumerate(data):
-        itemDict = {}
+        item_dict = {}
         attributes = term.get('attributes')
-        id = term.get('id')
+        item_id = term.get('id')
         title = attributes.get('title')
-        itemDict['title'] = title
-        itemDict['id'] = id
-        allItems.append(itemDict)
+        item_dict['title'] = title
+        item_dict['id'] = item_id
+        all_items.append(item_dict)
 
 
 # Loop through item and grabs metadata, chuck into DataFrame.
-allItems = []
+all_items = []
 more_links = True
-nextList = []
+next_page_list = []
 while more_links:
-    if not nextList:
-        r = requests.get(baseURL+type+'?page[limit=50]').json()
+    if not next_page_list:
+        r = requests.get(base_url+endpoint_type+'?page[limit=50]').json()
     else:
-        next = nextList[0]
-        r = requests.get(next).json()
+        next_page_link_page_link = next_page_list[0]
+        r = requests.get(next_page_link_page_link).json()
     data = r.get('data')
     print(len(data))
-    fetchData(data)
-    nextList.clear()
+    fetch_data(data)
+    next_page_list.clear()
     links = r.get('links')
-    nextDict = links.get('next')
-    if nextDict:
-        next = nextDict.get('href')
-        nextList.append(next)
+    next_page_linkDict = links.get('next_page_link_page_link')
+    if next_page_linkDict:
+        next_page_link_page_link = next_page_linkDict.get('href')
+        next_page_list.append(next_page_link_page_link)
     else:
         break
 print('')
 
 
-all_items = pd.DataFrame.from_dict(allItems)
+all_items = pd.DataFrame.from_records(all_items)
 print(all_items.head)
 
 # Create CSV for new DataFrame.

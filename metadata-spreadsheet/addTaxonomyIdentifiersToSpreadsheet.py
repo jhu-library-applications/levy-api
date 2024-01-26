@@ -12,10 +12,10 @@ else:
     metadata_file = input('Enter filename (including \'.csv\'): ')
 
 path = os.getcwd()
-dir = os.path.dirname(path)
-directory = os.path.join(dir, 'items-matched/')
+main_directory = os.path.dirname(path)
+directory = os.path.join(main_directory, 'items-matched/')
 
-tax = os.path.join(dir, 'logs/')
+tax = os.path.join(main_directory, 'logs/')
 filename2 = os.path.join(tax, 'logOfTaxonomyTermsAdded.csv')
 df_2 = pd.read_csv(filename2, header=0)
 df_2.set_index('name', inplace=True)

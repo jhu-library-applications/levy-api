@@ -15,16 +15,16 @@ else:
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
+base_url = secret.base_url
 
-type = 'jsonapi/node/levy_collection_item'
+endpoint_type = 'jsonapi/node/levy_collection_item'
 ext = '&include=field_images.field_item_image.uid'
 filter1 = '?filter[field_box]='
 filter2 = '&filter[field_item_id]='
@@ -32,12 +32,12 @@ filter2 = '&filter[field_item_id]='
 
 df = pd.read_csv(metadata_file)
 # Loop through item and grabs metadata, chuck into DataFrame.
-allItems = []
+all_items = []
 for index, row in df.iterrows():
     fileId = row.get('fileIdentifier')
     box = fileId[5:8]
     item = fileId[-3:]
-    url = baseURL+type+filter1+box+filter2+item+ext
+    url = base_url+endpoint_type+filter1+box+filter2+item+ext
     print(index, url)
     r = requests.get(url).json()
     data = r.get('data')
@@ -57,7 +57,7 @@ for index, row in df.iterrows():
                         file_id = field_item_image['data']['id']
                         print(file_id)
                         newRow['file_id'] = file_id
-                        file_url = baseURL+'jsonapi/file/file/'+file_id
+                        file_url = base_url+'jsonapi/file/file/'+file_id
                         r = requests.get(file_url).json()
                         attributes = r['data']['attributes']
                         filename = attributes.get('filename')
@@ -65,11 +65,11 @@ for index, row in df.iterrows():
                         newRow['filename'] = filename
                         newRow['filesize'] = filesize
                         print(filename)
-                        allItems.append(newRow)
+                        all_items.append(newRow)
     else:
         print(included)
 
-all_items = pd.DataFrame.from_dict(allItems)
+all_items = pd.DataFrame.from_records(all_items)
 print(all_items.head)
 
 # Create CSV for new DataFrame.

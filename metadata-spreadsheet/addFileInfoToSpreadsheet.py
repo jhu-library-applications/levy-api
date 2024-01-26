@@ -12,8 +12,8 @@ else:
     metadata_file = input('Enter filename (including \'.csv\'): ')
 
 path = os.getcwd()
-dir = os.path.dirname(path)
-logs = os.path.join(dir, 'logs/')
+directory = os.path.dirname(path)
+logs = os.path.join(directory, 'logs/')
 
 filename = os.path.join(logs, 'logOfImagesAndPDFs.csv')
 df = pd.read_csv(filename, header=0)

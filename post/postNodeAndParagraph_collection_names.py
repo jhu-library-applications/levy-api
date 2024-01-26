@@ -1,5 +1,5 @@
 import requests
-import secrets
+import secret
 import json
 import pandas as pd
 import time
@@ -9,16 +9,16 @@ import os
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-username = secrets.username
-password = secrets.password
+baseURL = secret.baseURL
+username = secret.username
+password = secret.password
 
 startTime = time.time()
 
@@ -114,7 +114,7 @@ frame.to_csv(fullname3, index=False)
 endpoint = 'jsonapi/paragraph/collection_name/'
 df_3 = pd.read_csv(fullname3)
 
-allItems = []
+all_items = []
 for index, row in df_3.iterrows():
     row = row
     creator_role = row['creator_role_id']
@@ -143,11 +143,11 @@ for index, row in df_3.iterrows():
         row['link'] = link
     else:
         row['link'] = 'error'
-    allItems.append(row)
+    all_items.append(row)
 
 
 # Convert results to DataFrame, export as CSV
-log = pd.DataFrame.from_dict(allItems)
+log = pd.DataFrame.from_dict(all_items)
 newFile = 'logOfParagraphCollectionName.csv'
 fullname = os.path.join(directory, newFile)
 log.to_csv(fullname, index=False)

@@ -1,5 +1,5 @@
 import requests
-import secrets
+import secret
 import pandas as pd
 
 secretsVersion = input('To edit production server, enter secrets file: ')
@@ -12,15 +12,13 @@ if secretsVersion != '':
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-username = secrets.username
-password = secrets.password
+baseURL = secret.baseURL
 
 fileLink = 'jsonapi/file/file/'
 
 
-username = secrets.username
-password = secrets.password
+username = secret.username
+password = secret.password
 
 # Authenticate to Drupal site, get token
 s = requests.Session()
@@ -41,7 +39,7 @@ filename = 'filesToDelete.csv'
 df = pd.read_csv(filename)
 
 # Loop through DataFrame
-allItems = []
+all_items = []
 for index, row in df.iterrows():
     filename = row['filename']
     print(index, filename)
@@ -53,10 +51,10 @@ for index, row in df.iterrows():
     # HTTP 404 means not found.
     row['delete'] = delete
     print(delete)
-    allItems.append(row)
+    all_items.append(row)
 
 
-all_items = pd.DataFrame.from_dict(allItems)
+all_items = pd.DataFrame.from_records(all_items)
 print(all_items.head)
 
 # Create CSV for new DataFrame.

@@ -14,15 +14,15 @@ if not os.path.exists(directory):
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
-type = '/jsonapi/taxonomy_term/'
+base_url = secret.base_url
+endpoint_type = '/jsonapi/taxonomy_term/'
 
 # Machine names of taxonomies for your Drupal instance.
 taxonomies = ['composition_metadata', 'c', 'creator_r', 'duplicat',
@@ -30,44 +30,44 @@ taxonomies = ['composition_metadata', 'c', 'creator_r', 'duplicat',
 
 
 # Function grabs name and uris from taxonomy terms.
-def fetchData(data):
+def fetch_data(data):
     for count, term in enumerate(data):
-        taxDict = {}
+        tax_dict = {}
         attributes = term.get('attributes')
-        id = term.get('id')
+        term_id = term.get('id')
         name = attributes.get('name')
-        taxDict['taxonomy'] = taxonomy
-        taxDict['name'] = name
-        taxDict['id'] = id
-        allTax.append(taxDict)
+        tax_dict['taxonomy'] = taxonomy
+        tax_dict['name'] = name
+        tax_dict['id'] = term_id
+        all_tax.append(tax_dict)
 
 
 # Loop through taxonomies and grab all taxonomy terms, chuck into DataFrame.
-allTax = []
+all_tax = []
 for taxonomy in taxonomies:
     print(taxonomy)
     more_links = True
-    nextList = []
+    next_page_list = []
     while more_links:
-        if not nextList:
-            r = requests.get(baseURL+type+taxonomy+'?page[limit=50]').json()
+        if not next_page_list:
+            r = requests.get(base_url+endpoint_type+taxonomy+'?page[limit=50]').json()
         else:
-            next = nextList[0]
-            r = requests.get(next).json()
+            next_page_link = next_page_list[0]
+            r = requests.get(next_page_link).json()
         data = r.get('data')
         print(len(data))
-        fetchData(data)
-        nextList.clear()
+        fetch_data(data)
+        next_page_list.clear()
         links = r.get('links')
-        nextDict = links.get('next')
-        if nextDict:
-            next = nextDict.get('href')
-            nextList.append(next)
+        next_page_linkDict = links.get('next_page_link_page_link')
+        if next_page_linkDict:
+            next_page_link = next_page_linkDict.get('href')
+            next_page_list.append(next_page_link)
         else:
             break
     print('')
 
-existingTax = pd.DataFrame.from_dict(allTax)
+existingTax = pd.DataFrame.from_records(all_tax)
 print(existingTax.head)
 
 # Create CSV for DataFrame containing all taxonomy terms.

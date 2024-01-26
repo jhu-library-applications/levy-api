@@ -132,7 +132,6 @@ for count, row in df.iterrows():
                           'relationships': relationships}
         metadata = {'data': patch_metadata}
         metadata = json.dumps(metadata)
-        print(metadata)
 
         # PATCH Levy Collection Item with updated JSON for 'field_subjects'.
         # Update headers for posting to Drupal.
@@ -172,7 +171,7 @@ for count, row in df.iterrows():
 
 
 # Convert results to DataFrame, export as CSV
-log = pd.DataFrame.from_dict(log_dictionary)
+log = pd.DataFrame.from_records(log_dictionary)
 fullname = 'log_AddingAdditionalSubjects.csv'
 log.to_csv(fullname, index=False)
 

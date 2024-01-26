@@ -5,16 +5,16 @@ import secret
 secretsVersion = input('To edit production server, enter secrets file: ')
 if secretsVersion != '':
     try:
-        secrets = __import__(secretsVersion)
+        secret = __import__(secretsVersion)
         print('Editing Production')
     except ImportError:
         print('Editing Stage')
 else:
     print('Editing Stage')
 
-baseURL = secrets.baseURL
+base_url = secret.base_url
 
-type = 'jsonapi/node/levy_collection_item'
+endpoint_type = 'jsonapi/node/levy_collection_item'
 ext = '?page[limit=50]?include=field_people.field_name,field_people.field_roles,field_people.paragraph_type'
 
 # List of single value fields
@@ -29,13 +29,13 @@ skip_fields = ['body', 'revision_timestamp', 'revision_log', 'path',
                'promote', 'sticky', 'default_langcode']
 
 
-def fetchData(data):
+def fetch_data(data):
     for entry in data:
         item = {}
-        type = entry.get('type')
-        id = entry.get('id')
-        item['type'] = type
-        item['id'] = id
+        item_type = entry.get('type')
+        item_id = entry.get('id')
+        item['type'] = item_type
+        item['id'] = item_id
         attributes = entry.get('attributes')
         relationships = entry.get('relationships')
         for key, value in attributes.items():
@@ -64,35 +64,35 @@ def fetchData(data):
                 if relation == 'field_people':
                     print(relationships[relation])
                     print(id)
-        allItems.append(item)
+        all_items.append(item)
 
 
 # Loop through item and grabs metadata, chuck into DataFrame.
-allItems = []
+all_items = []
 totalItemCount = 0
-nextList = []
+next_page_list = []
 while totalItemCount < 200:
-    if not nextList:
-        r = requests.get(baseURL+type+ext).json()
+    if not next_page_list:
+        r = requests.get(base_url+endpoint_type+ext).json()
     else:
-        next = nextList[0]
-        r = requests.get(next).json()
+        next_page_link = next_page_list[0]
+        r = requests.get(next_page_link).json()
     data = r.get('data')
     item_count = (len(data))
     totalItemCount = item_count + totalItemCount
-    fetchData(data)
-    nextList.clear()
+    fetch_data(data)
+    next_page_list.clear()
     links = r.get('links')
-    nextDict = links.get('next')
-    if nextDict:
-        next = nextDict.get('href')
-        nextList.append(next)
+    next_page_linkDict = links.get('next_page_link_page_link')
+    if next_page_linkDict:
+        next_page_link = next_page_linkDict.get('href')
+        next_page_list.append(next_page_link)
     else:
         break
 print('')
 
 
-all_items = pd.DataFrame.from_dict(allItems)
+all_items = pd.DataFrame.from_records(all_items)
 print(all_items.head)
 
 # Create CSV for new DataFrame.
