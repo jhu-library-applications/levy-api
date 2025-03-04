@@ -59,8 +59,8 @@ venv.bak/
 .ropeproject
 
 # Local
-secrets.py
-secretsProd.py
+secret.py
+secretProd.py
 *.pyc
 data/*
 local/*
